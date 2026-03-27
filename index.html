@@ -3,80 +3,183 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SSL — Dashboard de Estudio</title>
+<title>SSL — Santo Grial de Estudio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #f0f2f5;
+  --bg: #f8f9fb;
+  --bg-alt: #eef1f5;
   --card: #ffffff;
-  --header-start: #0d1b2a;
-  --header-mid: #1b4332;
-  --header-end: #2d6a4f;
-  --accent: #2d6a4f;
-  --accent-light: #40916c;
-  --text: #2c3e50;
-  --text-light: #7f8c8d;
-  --success: #27ae60;
-  --warning: #f39c12;
-  --danger: #e74c3c;
-  --info: #3498db;
-  --u1: #e74c3c;
-  --u2: #e67e22;
-  --u3: #f1c40f;
-  --u4: #2ecc71;
-  --u5: #3498db;
-  --u6: #9b59b6;
-  --u7: #1abc9c;
-  --radius: 14px;
-  --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06);
-  --shadow-hover: 0 2px 8px rgba(0,0,0,0.06), 0 8px 32px rgba(0,0,0,0.1);
-  --transition: all 0.3s ease;
+  --card-border: rgba(0,0,0,0.04);
+  --header-start: #0f172a;
+  --header-mid: #1e3a5f;
+  --header-end: #0ea5e9;
+  --accent: #0ea5e9;
+  --accent-dark: #0284c7;
+  --accent-light: #38bdf8;
+  --accent-subtle: rgba(14,165,233,0.08);
+  --text: #1e293b;
+  --text-secondary: #64748b;
+  --text-light: #94a3b8;
+  --success: #10b981;
+  --success-bg: #ecfdf5;
+  --warning: #f59e0b;
+  --warning-bg: #fffbeb;
+  --danger: #ef4444;
+  --danger-bg: #fef2f2;
+  --info: #6366f1;
+  --u1: #ef4444;
+  --u2: #f97316;
+  --u3: #eab308;
+  --u4: #22c55e;
+  --u5: #3b82f6;
+  --u6: #a855f7;
+  --u7: #14b8a6;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --radius-sm: 8px;
+  --shadow-xs: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+  --shadow-hover: 0 8px 30px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.06);
+  --transition: all 0.2s cubic-bezier(0.4,0,0.2,1);
+  --glass: rgba(255,255,255,0.7);
+  --glass-border: rgba(255,255,255,0.2);
+  --sidebar-w: 260px;
 }
+[data-theme="dark"] {
+  --bg: #0b1120;
+  --bg-alt: #151f32;
+  --card: #162032;
+  --card-border: rgba(255,255,255,0.07);
+  --text: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-light: #64748b;
+  --glass: rgba(11,17,32,0.85);
+  --glass-border: rgba(255,255,255,0.06);
+  --accent-subtle: rgba(14,165,233,0.12);
+  --success: #34d399;
+  --success-bg: rgba(52,211,153,0.1);
+  --warning: #fbbf24;
+  --warning-bg: rgba(251,191,36,0.1);
+  --danger: #f87171;
+  --danger-bg: rgba(248,113,113,0.1);
+  --info: #818cf8;
+}
+[data-theme="dark"] .exercise-item{background:#1a2740!important;border-color:rgba(255,255,255,0.04)!important;}
+[data-theme="dark"] .exercise-item:hover{background:#1e2d48!important;}
+[data-theme="dark"] .exercise-item.done{background:rgba(52,211,153,0.08)!important;}
+[data-theme="dark"] .exercise-item.in-progress{background:rgba(251,191,36,0.08)!important;}
+[data-theme="dark"] .exercise-item.need-review{background:rgba(248,113,113,0.08)!important;}
+[data-theme="dark"] .theory-card{background:#1a2740!important;border-left-color:#334155!important;}
+[data-theme="dark"] .theory-card.mastered{border-left-color:var(--success)!important;background:rgba(52,211,153,0.06)!important;}
+[data-theme="dark"] .fc-card-back{background:#162032!important;color:var(--text)!important;border-color:var(--accent)!important;}
+[data-theme="dark"] .fc-card-front{background:linear-gradient(135deg,#0c1829,#1a3050)!important;}
+[data-theme="dark"] .quiz-option{background:#1a2740!important;border-color:rgba(255,255,255,0.08)!important;color:var(--text)!important;}
+[data-theme="dark"] .quiz-option:hover{background:#1e2d48!important;}
+[data-theme="dark"] .quiz-option.selected{background:rgba(14,165,233,0.15)!important;border-color:var(--accent)!important;}
+[data-theme="dark"] .quiz-option.correct{background:rgba(52,211,153,0.15)!important;border-color:var(--success)!important;}
+[data-theme="dark"] .quiz-option.incorrect{background:rgba(248,113,113,0.15)!important;border-color:var(--danger)!important;}
+[data-theme="dark"] .quiz-question{background:#1a2740!important;border-left-color:var(--accent)!important;}
+[data-theme="dark"] .quiz-mode-btn{background:#1a2740!important;border-color:rgba(255,255,255,0.08)!important;color:var(--text)!important;}
+[data-theme="dark"] .quiz-mode-btn:hover{border-color:var(--accent)!important;}
+[data-theme="dark"] .modal{background:#162032!important;color:var(--text)!important;}
+[data-theme="dark"] .sos-tip{color:var(--text)!important;}
+[data-theme="dark"] .bolilla-topics li{background:#1a2740!important;color:var(--text)!important;}
+[data-theme="dark"] .bolillero-history td,.bolillero-history th{border-color:rgba(255,255,255,0.06)!important;}
+[data-theme="dark"] .sim-history-item{background:#1a2740!important;color:var(--text)!important;}
+[data-theme="dark"] .resource-card{background:#1a2740!important;border-color:rgba(255,255,255,0.06)!important;color:var(--text)!important;}
+[data-theme="dark"] .resource-card:hover{border-color:rgba(255,255,255,0.12)!important;}
+[data-theme="dark"] .week-card{background:#162032!important;border-left-color:#334155!important;}
+[data-theme="dark"] .week-milestone{background:rgba(255,255,255,0.04)!important;border-left-color:rgba(255,255,255,0.15)!important;color:var(--text)!important;}
+[data-theme="dark"] .filters select,[data-theme="dark"] .filters input{background:#1a2740!important;border-color:rgba(255,255,255,0.1)!important;color:var(--text)!important;}
+[data-theme="dark"] .detail-content{background:#0f1926!important;color:var(--text)!important;}
+[data-theme="dark"] .detail-content code{background:#1a2740!important;color:#7dd3fc!important;}
+[data-theme="dark"] .detail-content .example{background:#1a2740!important;border-left-color:var(--accent)!important;}
+[data-theme="dark"] .detail-content .key-concept{background:rgba(14,165,233,0.08)!important;border-color:rgba(14,165,233,0.2)!important;}
+[data-theme="dark"] .topic-details summary,[data-theme="dark"] .ex-details summary{background:rgba(14,165,233,0.06)!important;color:var(--accent)!important;}
+[data-theme="dark"] .fc-filter-btn{background:#1a2740!important;border-color:rgba(255,255,255,0.08)!important;color:var(--text-secondary)!important;}
+[data-theme="dark"] .fc-filter-btn.active{background:var(--accent)!important;color:white!important;border-color:var(--accent)!important;}
+[data-theme="dark"] .fc-know{background:rgba(52,211,153,0.15)!important;color:var(--success)!important;}
+[data-theme="dark"] .fc-review{background:rgba(248,113,113,0.15)!important;color:var(--danger)!important;}
+[data-theme="dark"] .status-not-started{background:rgba(255,255,255,0.06)!important;color:var(--text-light)!important;}
+[data-theme="dark"] .status-in-progress{background:rgba(251,191,36,0.12)!important;color:var(--warning)!important;}
+[data-theme="dark"] .status-done{background:rgba(52,211,153,0.12)!important;color:var(--success)!important;}
+[data-theme="dark"] .status-need-review{background:rgba(248,113,113,0.12)!important;color:var(--danger)!important;}
+[data-theme="dark"] pre{background:#0f1926!important;color:#e2e8f0!important;}
+[data-theme="dark"] .goal-bar-outer{background:#1a2740!important;}
+[data-theme="dark"] .progress-bar-wrap{background:#1a2740!important;}
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;background:linear-gradient(180deg,#f5f7fa 0%,#e8ecf1 100%);background-attachment:fixed;color:var(--text);min-height:100vh;}
-.header{background:linear-gradient(135deg,var(--header-start),var(--header-mid),var(--header-end));color:white;padding:20px 24px 12px;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,0.2);}
-.header-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
-.header h1{font-size:1.4rem;font-weight:700;letter-spacing:-0.5px;}
-.header .motto{font-size:0.8rem;opacity:0.7;font-style:italic;}
-.header .countdown{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);padding:8px 20px;border-radius:24px;font-size:0.85rem;font-weight:700;}
-.countdown.urgent{background:linear-gradient(135deg,rgba(231,76,60,0.2),rgba(231,76,60,0.4));border-color:rgba(231,76,60,0.5);animation:urgentPulse 2s ease-in-out infinite;}
-@keyframes urgentPulse{0%,100%{box-shadow:0 0 0 0 rgba(231,76,60,0.3);}50%{box-shadow:0 0 0 8px rgba(231,76,60,0);}}
-.tabs{display:flex;gap:2px;padding:12px 0 0;overflow-x:auto;-webkit-overflow-scrolling:touch;}
-.tabs::-webkit-scrollbar{height:0;}
-.tab-btn{background:rgba(255,255,255,0.06);border:none;color:rgba(255,255,255,0.5);padding:10px 18px;font-size:0.78rem;font-weight:600;cursor:pointer;border-radius:10px 10px 0 0;transition:all 0.25s ease;white-space:nowrap;font-family:inherit;}
-.tab-btn:hover{background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.8);}
-.tab-btn.active{background:var(--bg);color:var(--text);box-shadow:0 -2px 10px rgba(0,0,0,0.08);}
-.main{padding:20px;max-width:1200px;margin:0 auto;}
-.tab-content{display:none;animation:fadeIn 0.3s ease;}
+body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;letter-spacing:-0.01em;}
+.app-layout{display:flex;min-height:100vh;}
+.sidebar{width:var(--sidebar-w);background:var(--header-start);color:white;position:fixed;top:0;left:0;bottom:0;z-index:200;display:flex;flex-direction:column;overflow-y:auto;transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);}
+.sidebar-header{padding:24px 20px 16px;border-bottom:1px solid rgba(255,255,255,0.08);}
+.sidebar-header h1{font-size:1.1rem;font-weight:800;letter-spacing:-0.5px;line-height:1.2;background:linear-gradient(135deg,#fff,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.sidebar-header .motto{font-size:0.72rem;opacity:0.5;margin-top:6px;font-style:italic;-webkit-text-fill-color:initial;}
+.sidebar-header .user-info{font-size:0.68rem;opacity:0.35;margin-top:4px;-webkit-text-fill-color:initial;}
+.sidebar-countdown{margin:12px 16px;padding:10px 14px;background:linear-gradient(135deg,rgba(14,165,233,0.2),rgba(56,189,248,0.1));border:1px solid rgba(14,165,233,0.3);border-radius:var(--radius-sm);font-size:0.78rem;font-weight:700;text-align:center;}
+.sidebar-countdown.urgent{background:linear-gradient(135deg,rgba(239,68,68,0.25),rgba(239,68,68,0.15));border-color:rgba(239,68,68,0.4);animation:urgentPulse 2s ease-in-out infinite;}
+@keyframes urgentPulse{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,0.2);}50%{box-shadow:0 0 0 6px rgba(239,68,68,0);}}
+.sidebar-nav{flex:1;padding:8px 0;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 20px;font-size:0.8rem;font-weight:500;color:rgba(255,255,255,0.5);cursor:pointer;transition:var(--transition);border-left:3px solid transparent;white-space:nowrap;}
+.nav-item:hover{color:rgba(255,255,255,0.85);background:rgba(255,255,255,0.04);}
+.nav-item.active{color:white;background:rgba(14,165,233,0.12);border-left-color:var(--accent);}
+.nav-item .nav-icon{width:18px;text-align:center;font-size:0.85rem;flex-shrink:0;}
+.sidebar-footer{padding:12px 16px;border-top:1px solid rgba(255,255,255,0.06);display:flex;gap:8px;}
+.sidebar-footer button{flex:1;padding:8px;border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius-sm);background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.6);font-size:0.72rem;font-weight:600;cursor:pointer;transition:var(--transition);font-family:inherit;}
+.sidebar-footer button:hover{background:rgba(255,255,255,0.08);color:white;}
+.sidebar-toggle{display:none;position:fixed;top:12px;left:12px;z-index:300;background:var(--header-start);color:white;border:none;border-radius:var(--radius-sm);padding:8px 10px;font-size:1.1rem;cursor:pointer;box-shadow:var(--shadow-md);}
+.main-wrapper{flex:1;margin-left:var(--sidebar-w);min-height:100vh;}
+.top-bar{position:sticky;top:0;z-index:100;background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--card-border);padding:12px 28px;display:flex;align-items:center;gap:16px;}
+.search-box{flex:1;max-width:400px;position:relative;}
+.search-box input{width:100%;padding:8px 14px 8px 36px;border:1px solid var(--card-border);border-radius:var(--radius);background:var(--card);font-size:0.82rem;font-family:inherit;color:var(--text);transition:var(--transition);outline:none;}
+.search-box input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-subtle);}
+.search-box::before{content:"";position:absolute;left:12px;top:50%;transform:translateY(-50%);width:14px;height:14px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'/%3E%3C/svg%3E");background-size:contain;}
+.search-results{position:absolute;top:100%;left:0;right:0;background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius);box-shadow:var(--shadow-lg);max-height:300px;overflow-y:auto;display:none;z-index:50;margin-top:4px;}
+.search-results.show{display:block;}
+.search-result-item{padding:10px 14px;font-size:0.82rem;cursor:pointer;border-bottom:1px solid var(--card-border);transition:var(--transition);}
+.search-result-item:hover{background:var(--accent-subtle);}
+.search-result-item:last-child{border-bottom:none;}
+.top-bar-right{display:flex;align-items:center;gap:8px;margin-left:auto;}
+.streak-badge{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,var(--accent-dark),var(--accent));color:white;padding:5px 14px;border-radius:20px;font-size:0.75rem;font-weight:700;box-shadow:0 2px 8px rgba(14,165,233,0.3);}
+.theme-toggle{width:36px;height:36px;border-radius:50%;border:1px solid var(--card-border);background:var(--card);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:var(--transition);color:var(--text-secondary);}
+.theme-toggle:hover{background:var(--accent-subtle);border-color:var(--accent);}
+.main{padding:24px 28px;max-width:1200px;margin:0 auto;width:100%;}
+.tab-content{display:none;animation:fadeIn 0.25s cubic-bezier(0.4,0,0.2,1);}
 .tab-content.active{display:block;}
-@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
-.card{background:var(--card);border-radius:var(--radius);padding:20px;margin-bottom:16px;box-shadow:var(--shadow);transition:box-shadow 0.3s,transform 0.2s;border:1px solid rgba(0,0,0,0.04);}
-.card:hover{box-shadow:var(--shadow-hover);}
-.card h2{font-size:1.1rem;margin-bottom:12px;color:var(--accent);}
-.card h3{font-size:0.95rem;margin-bottom:8px;color:var(--text);}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+.card{background:var(--card);border-radius:var(--radius-lg);padding:24px;margin-bottom:16px;box-shadow:var(--shadow);transition:var(--transition);border:1px solid var(--card-border);}
+.card:hover{box-shadow:var(--shadow-md);}
+.card h2{font-size:1.05rem;font-weight:700;margin-bottom:14px;color:var(--text);letter-spacing:-0.3px;}
+.card h3{font-size:0.92rem;font-weight:600;margin-bottom:8px;color:var(--text);}
+.card-accent{border-left:3px solid var(--accent);}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
 .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
-.stat-card{background:rgba(255,255,255,0.9);border:1px solid rgba(255,255,255,0.2);border-radius:16px;padding:20px;text-align:center;box-shadow:var(--shadow);transition:box-shadow 0.3s,transform 0.2s;}
-.stat-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover);}
-.stat-card .stat-value{font-size:2rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.stat-card .stat-label{font-size:0.8rem;color:var(--text-light);margin-top:4px;}
-.progress-bar-wrap{background:#f0f0f0;border-radius:10px;height:8px;overflow:hidden;margin:4px 0;}
-.progress-bar-fill{height:100%;border-radius:10px;background:linear-gradient(90deg,#2d6a4f,#40916c);transition:width 0.5s ease;}
+.stat-card{background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius);padding:20px;text-align:center;box-shadow:var(--shadow-xs);transition:var(--transition);}
+.stat-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);}
+.stat-card .stat-value{font-size:1.8rem;font-weight:800;color:var(--accent);}
+.stat-card .stat-label{font-size:0.75rem;color:var(--text-light);margin-top:4px;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;}
+.progress-bar-wrap{background:var(--bg-alt);border-radius:10px;height:6px;overflow:hidden;margin:4px 0;}
+.progress-bar-fill{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--accent-dark),var(--accent-light));transition:width 0.5s cubic-bezier(0.4,0,0.2,1);}
 .progress-ring-container{text-align:center;padding:10px;}
 .progress-ring{transform:rotate(-90deg);}
-.progress-ring-circle-bg{fill:none;stroke:#ecf0f1;}
-.progress-ring-circle{fill:none;stroke-linecap:round;transition:stroke-dashoffset 0.6s ease;}
+.progress-ring-circle-bg{fill:none;stroke:var(--bg-alt);}
+.progress-ring-circle{fill:none;stroke-linecap:round;transition:stroke-dashoffset 0.6s cubic-bezier(0.4,0,0.2,1);}
 .progress-ring-text{font-size:1.5rem;font-weight:800;fill:var(--accent);}
-.btn{display:inline-flex;align-items:center;gap:6px;border:none;padding:10px 20px;border-radius:10px;font-weight:600;cursor:pointer;transition:all 0.2s ease;font-size:0.85rem;font-family:inherit;}
-.btn:hover{transform:translateY(-1px);filter:brightness(1.1);}
-.btn:active{transform:translateY(0);}
-.btn-primary{background:linear-gradient(135deg,var(--accent),#1b4332);color:white;}
-.btn-primary:hover{box-shadow:0 4px 12px rgba(45,106,79,0.3);}
-.btn-success{background:linear-gradient(135deg,#43e97b,#38f9d7);color:#1a1a2e;}
-.btn-danger{background:linear-gradient(135deg,#f093fb,#f5576c);color:white;}
+.btn{display:inline-flex;align-items:center;gap:6px;border:none;padding:9px 18px;border-radius:var(--radius-sm);font-weight:600;cursor:pointer;transition:var(--transition);font-size:0.82rem;font-family:inherit;}
+.btn:hover{transform:translateY(-1px);}
+.btn:active{transform:translateY(0);opacity:0.9;}
+.btn-primary{background:var(--accent);color:white;}
+.btn-primary:hover{background:var(--accent-dark);box-shadow:0 4px 12px rgba(14,165,233,0.3);}
+.btn-success{background:var(--success);color:white;}
+.btn-danger{background:var(--danger);color:white;}
 .btn-warning{background:var(--warning);color:white;}
-.btn-secondary{background:rgba(0,0,0,0.06);color:var(--text);}
-.btn-sm{padding:6px 12px;font-size:0.75rem;}
+.btn-secondary{background:var(--bg-alt);color:var(--text-secondary);border:1px solid var(--card-border);}
+.btn-secondary:hover{background:var(--accent-subtle);color:var(--accent);border-color:var(--accent);}
+.btn-sm{padding:5px 12px;font-size:0.75rem;}
 .exercise-group{margin-bottom:20px;}
 .exercise-group-header{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:var(--radius);cursor:pointer;user-select:none;transition:var(--transition);margin-bottom:4px;}
 .exercise-group-header:hover{filter:brightness(0.95);}
@@ -130,7 +233,7 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;-webkit-f
 .fc-card-inner{position:relative;width:100%;height:100%;transition:transform 0.5s;transform-style:preserve-3d;}
 .fc-card.flipped .fc-card-inner{transform:rotateY(180deg);}
 .fc-card-front,.fc-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;font-size:0.9rem;line-height:1.5;box-shadow:var(--shadow);}
-.fc-card-front{background:linear-gradient(135deg,#0d1b2a,#1b4332);color:white;font-weight:600;}
+.fc-card-front{background:linear-gradient(135deg,var(--header-start),var(--header-mid));color:white;font-weight:600;}
 .fc-card-back{background:white;color:var(--text);transform:rotateY(180deg);border:2px solid var(--accent);}
 .fc-card-unit{position:absolute;top:10px;left:14px;font-size:0.65rem;opacity:0.6;font-weight:600;}
 .fc-card-hint{position:absolute;bottom:10px;font-size:0.68rem;opacity:0.5;}
@@ -141,7 +244,7 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;-webkit-f
 .fc-mastered{border:2px solid var(--success);box-shadow:0 0 0 2px rgba(39,174,96,0.2);}
 .bolillero-area{text-align:center;padding:20px;}
 .bolilla-display{display:flex;justify-content:center;gap:24px;margin:24px 0;flex-wrap:wrap;}
-.bolilla-ball{width:120px;height:120px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:white;font-weight:800;font-size:2rem;box-shadow:0 8px 24px rgba(0,0,0,0.2);cursor:pointer;transition:var(--transition);position:relative;}
+.bolilla-ball{width:110px;height:110px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:white;font-weight:800;font-size:1.8rem;box-shadow:0 6px 20px rgba(0,0,0,0.15);cursor:pointer;transition:var(--transition);position:relative;}
 .bolilla-ball:hover{transform:scale(1.08);}
 .bolilla-ball .ball-label{font-size:0.6rem;font-weight:600;margin-top:2px;opacity:0.8;}
 .bolilla-ball.selected{transform:scale(1.15);box-shadow:0 0 0 4px white,0 0 0 8px var(--accent),0 12px 32px rgba(0,0,0,0.3);}
@@ -193,7 +296,7 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;-webkit-f
 .pomodoro-stat .ps-val{font-size:1.5rem;font-weight:800;color:var(--accent);}
 .pomodoro-stat .ps-label{font-size:0.75rem;color:var(--text-light);}
 .week-card{background:var(--card);border-radius:var(--radius);padding:16px 20px;margin-bottom:12px;box-shadow:var(--shadow);border-left:5px solid #ccc;transition:var(--transition);}
-.week-card.current-week{border-left-color:var(--accent-light);box-shadow:0 0 0 2px var(--accent-light),var(--shadow);}
+.week-card.current-week{border-left-color:var(--accent);box-shadow:0 0 0 2px var(--accent),var(--shadow);}
 .week-card.past-week{opacity:0.65;}
 .week-card .week-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px;}
 .week-card .week-label{font-weight:800;font-size:0.95rem;color:var(--accent);}
@@ -213,19 +316,20 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;-webkit-f
 .goal-bar-outer{flex:1;height:14px;background:#ecf0f1;border-radius:10px;overflow:hidden;}
 .goal-bar-inner{height:100%;border-radius:10px;transition:width 0.6s ease;background:linear-gradient(90deg,var(--info),var(--success));}
 .motivation-box{padding:14px 20px;border-radius:var(--radius);font-size:0.9rem;font-weight:600;text-align:center;margin-bottom:16px;}
-.sos-btn{position:fixed;bottom:24px;right:24px;z-index:200;background:linear-gradient(135deg,#40916c,#2d6a4f);color:white;border:none;border-radius:50px;padding:14px 22px;font-size:0.85rem;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(45,106,79,0.4);transition:var(--transition);font-family:inherit;}
-.sos-btn:hover{transform:scale(1.05);box-shadow:0 6px 24px rgba(45,106,79,0.5);}
+.sos-btn{position:fixed;bottom:24px;right:24px;z-index:200;background:var(--accent);color:white;border:none;border-radius:50px;padding:12px 20px;font-size:0.82rem;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(14,165,233,0.35);transition:var(--transition);font-family:inherit;}
+.sos-btn:hover{transform:scale(1.05);box-shadow:0 6px 24px rgba(14,165,233,0.45);}
 .modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:300;justify-content:center;align-items:center;}
 .modal-overlay.active{display:flex;}
 .modal{background:white;border-radius:16px;padding:32px;max-width:500px;width:90%;max-height:90vh;overflow-y:auto;box-shadow:0 16px 48px rgba(0,0,0,0.2);}
 .modal h2{color:var(--accent);margin-bottom:16px;}
 .modal .close-modal{float:right;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--text-light);}
-.breathing-circle{width:150px;height:150px;border-radius:50%;background:linear-gradient(135deg,#2d6a4f,#40916c);margin:20px auto;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.1rem;animation:breathe 19s infinite ease-in-out;}
+.breathing-circle{width:140px;height:140px;border-radius:50%;background:linear-gradient(135deg,var(--accent-dark),var(--accent-light));margin:20px auto;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.1rem;animation:breathe 19s infinite ease-in-out;}
 @keyframes breathe{0%,100%{transform:scale(0.6);}21%{transform:scale(1);}58%{transform:scale(1);}79%{transform:scale(0.6);}}
 .sos-tip{padding:12px;margin:8px 0;border-radius:8px;font-size:0.88rem;line-height:1.5;}
 .sim-history-item{padding:10px 14px;margin:4px 0;border-radius:8px;background:#fafbfc;display:flex;justify-content:space-between;align-items:center;font-size:0.82rem;}
-@media(max-width:768px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}.header h1{font-size:1.15rem;}.tab-btn{padding:8px 10px;font-size:0.7rem;}.main{padding:12px;}.exercise-item{flex-wrap:wrap;gap:6px;}.exercise-item .ex-desc{min-width:100%;order:10;}.bolilla-ball{width:90px;height:90px;font-size:1.5rem;}.fc-grid{grid-template-columns:1fr;}.pomodoro-circle{width:200px;height:200px;}.pomodoro-time{font-size:2rem;}.campus-resources-grid{grid-template-columns:1fr;}.quiz-mode-selector{flex-direction:column;}}
-@media(max-width:480px){.stat-card .stat-value{font-size:1.5rem;}.filters{flex-direction:column;}.filters select,.filters input{width:100%;}}
+@media(max-width:900px){.sidebar{transform:translateX(-100%);}.sidebar.open{transform:translateX(0);}.sidebar-toggle{display:block;}.main-wrapper{margin-left:0;}.top-bar{padding:12px 16px;padding-left:52px;}.main{padding:16px;}}
+@media(max-width:768px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}.main{padding:14px;}.exercise-item{flex-wrap:wrap;gap:6px;}.exercise-item .ex-desc{min-width:100%;order:10;}.bolilla-ball{width:85px;height:85px;font-size:1.4rem;}.fc-grid{grid-template-columns:1fr;}.pomodoro-circle{width:200px;height:200px;}.pomodoro-time{font-size:2rem;}.campus-resources-grid{grid-template-columns:1fr;}.quiz-mode-selector{flex-direction:column;}.search-box{max-width:200px;}}
+@media(max-width:480px){.stat-card .stat-value{font-size:1.4rem;}.filters{flex-direction:column;}.filters select,.filters input{width:100%;}.top-bar-right .streak-badge{display:none;}.search-box{max-width:160px;}}
 ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.15);border-radius:3px;}::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,0.25);}
 @media print{.header,.tabs{position:static;}.sos-btn{display:none;}}
 /* DETAILS/SUMMARY for theory & exercises */
@@ -247,30 +351,39 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;-webkit-f
 </head>
 <body>
 
-<div class="header">
-  <div class="header-top">
-    <div>
-      <h1>Sintaxis y Semantica de los Lenguajes</h1>
-      <div class="motto">"No memorices -- DEMOSTRA que entendes."</div>
-    </div>
-    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-      <span class="streak-badge" id="streakBadge">0 dias</span>
-      <span style="display:block;font-size:0.75rem;opacity:0.6;margin-top:2px;">Juan Ignacio Barranco Bastan — Leg. 44041 — UTN FRM — ISI 2026</span>
-      <div class="countdown" id="countdownBadge">-- dias para el examen</div>
-    </div>
+<button class="sidebar-toggle" id="sidebarToggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">&#9776;</button>
+<div class="app-layout">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h1>Sintaxis y Semantica de los Lenguajes</h1>
+    <div class="motto">"No memorices — DEMOSTRA que entendes."</div>
+    <div class="user-info">Juan Ignacio Barranco Bastan — Leg. 44041 — UTN FRM — ISI 2026</div>
   </div>
-  <div class="tabs" id="tabsBar">
-    <button class="tab-btn active" data-tab="panel">Panel Principal</button>
-    <button class="tab-btn" data-tab="ejercicios">Ejercicios</button>
-    <button class="tab-btn" data-tab="teoria">Teoria</button>
-    <button class="tab-btn" data-tab="flashcards">Flashcards</button>
-    <button class="tab-btn" data-tab="oral">Practica Oral</button>
-    <button class="tab-btn" data-tab="examen">Modo Examen</button>
-    <button class="tab-btn" data-tab="probables">Examenes Probables</button>
-    <button class="tab-btn" data-tab="campus">Material Campus</button>
-    <button class="tab-btn" data-tab="pomodoro">Pomodoro</button>
-    <button class="tab-btn" data-tab="plan">Plan Semanal</button>
-    <button class="tab-btn" data-tab="prediccion">Prediccion Final (IA)</button>
+  <div class="sidebar-countdown" id="countdownBadge">-- dias para el examen</div>
+  <nav class="sidebar-nav">
+    <div class="nav-item active" data-tab="panel"><span class="nav-icon">&#9679;</span> Panel</div>
+    <div class="nav-item" data-tab="ejercicios"><span class="nav-icon">&#9998;</span> Ejercicios</div>
+    <div class="nav-item" data-tab="teoria"><span class="nav-icon">&#9733;</span> Teoria</div>
+    <div class="nav-item" data-tab="flashcards"><span class="nav-icon">&#9830;</span> Flashcards</div>
+    <div class="nav-item" data-tab="oral"><span class="nav-icon">&#9742;</span> Practica Oral</div>
+    <div class="nav-item" data-tab="examen"><span class="nav-icon">&#9200;</span> Modo Examen</div>
+    <div class="nav-item" data-tab="probables"><span class="nav-icon">&#9889;</span> Examenes Probables</div>
+    <div class="nav-item" data-tab="campus"><span class="nav-icon">&#9745;</span> Material Campus</div>
+    <div class="nav-item" data-tab="pomodoro"><span class="nav-icon">&#9201;</span> Pomodoro</div>
+    <div class="nav-item" data-tab="plan"><span class="nav-icon">&#9776;</span> Plan Semanal</div>
+    <div class="nav-item" data-tab="prediccion"><span class="nav-icon">&#9881;</span> Prediccion Final</div>
+  </nav>
+  <div class="sidebar-footer">
+    <button onclick="openSOS()">SOS Ansiedad</button>
+    <button id="themeToggleSidebar" onclick="toggleTheme()">Modo Oscuro</button>
+  </div>
+</aside>
+<div class="main-wrapper">
+<div class="top-bar">
+  <div class="search-box"><input type="text" id="globalSearch" placeholder="Buscar en todo el dashboard..." oninput="handleSearch(this.value)"><div class="search-results" id="searchResults"></div></div>
+  <div class="top-bar-right">
+    <span class="streak-badge" id="streakBadge">0 dias</span>
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeToggleBtn" title="Cambiar tema">&#9790;</button>
   </div>
 </div>
 
@@ -278,7 +391,7 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;-webkit-f
 
 <!-- TAB: PANEL PRINCIPAL -->
 <div class="tab-content active" id="tab-panel">
-  <div id="motivationMsg" class="motivation-box" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);color:var(--accent);">Cargando...</div>
+  <div id="motivationMsg" class="motivation-box" style="background:var(--accent-subtle);color:var(--accent);border:1px solid rgba(14,165,233,0.15);border-radius:var(--radius);">Cargando...</div>
   <div class="grid-2" style="margin-bottom:16px;">
     <div class="card" style="text-align:center;">
       <h2>Progreso General</h2>
@@ -287,7 +400,7 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;-webkit-f
           <circle class="progress-ring-circle-bg" cx="80" cy="80" r="68" stroke-width="12"/>
           <circle class="progress-ring-circle" id="mainRingCircle" cx="80" cy="80" r="68" stroke-width="12"
             stroke="url(#ringGrad)" stroke-dasharray="427.26" stroke-dashoffset="427.26"/>
-          <defs><linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#2d6a4f"/><stop offset="100%" style="stop-color:#40916c"/></linearGradient></defs>
+          <defs><linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#0284c7"/><stop offset="100%" style="stop-color:#38bdf8"/></linearGradient></defs>
           <text class="progress-ring-text" x="80" y="80" text-anchor="middle" dominant-baseline="central" id="mainRingPct">0%</text>
         </svg>
       </div>
@@ -457,17 +570,23 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;-webkit-f
 
 <!-- TAB: EXAMENES PROBABLES -->
 <div class="tab-content" id="tab-probables">
-  <div class="card" style="margin-bottom:16px;">
-    <h2>10 Examenes Mas Probables — Analisis Estadistico</h2>
-    <p style="font-size:0.85rem;color:var(--text-light);margin-bottom:12px;">Basado en el peso de cada unidad en horas catedra (practica vs teoria), los TPs de la catedra, y el formato de 3 etapas del examen. Las unidades con mas horas practicas (U6: 14h, U7: 14h) tienen mayor probabilidad de aparecer en la 2° etapa (problemas).</p>
+  <div class="card card-accent" style="margin-bottom:16px;">
+    <h2>Ranking de Probabilidad — ~35 Examenes SSL Verificados (2015-2026)</h2>
+    <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:12px;">142 archivos analizados en 2 pasadas (imagenes + PDFs extraidos con pymupdf + DOCX con python-docx). 2 descartados (Paradigmas). ~35 examenes SSL unicos tras deduplicar.</p>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:0.82rem;">
-      <div style="background:#f7f9fc;padding:10px 14px;border-radius:8px;"><b>U1 Gramaticas:</b> 6h teoria + 8h practica = <b>14h</b></div>
-      <div style="background:#f7f9fc;padding:10px 14px;border-radius:8px;"><b>U2 Automatas:</b> 6h teoria + 8h practica = <b>14h</b></div>
-      <div style="background:#f7f9fc;padding:10px 14px;border-radius:8px;"><b>U3 Parsers:</b> 3h teoria + 3h practica = <b>6h</b></div>
-      <div style="background:#f7f9fc;padding:10px 14px;border-radius:8px;"><b>U4 Traductores:</b> 6h teoria + 6h practica = <b>12h</b></div>
-      <div style="background:#f7f9fc;padding:10px 14px;border-radius:8px;"><b>U5 Sem. enunciados:</b> 4h teoria + 6h practica = <b>10h</b></div>
-      <div style="background:#f7f9fc;padding:10px 14px;border-radius:8px;"><b>U6 Sem. datos:</b> 6h teoria + 14h practica = <b>20h (mayor peso)</b></div>
-      <div style="background:#f7f9fc;padding:10px 14px;border-radius:8px;grid-column:span 2;"><b>U7 Sem. subprogramas:</b> 6h teoria + 14h practica = <b>20h (mayor peso)</b></div>
+      <div style="background:var(--accent-subtle);padding:10px 14px;border-radius:8px;"><b>1. AFD/AFND (construir/minimizar):</b> <span style="color:var(--danger);font-weight:800;">94%</span> (33/35)</div>
+      <div style="background:var(--accent-subtle);padding:10px 14px;border-radius:8px;"><b>2. Alcance est/din + vinculacion:</b> <span style="color:var(--danger);font-weight:800;">91%</span> (32/35)</div>
+      <div style="background:var(--accent-subtle);padding:10px 14px;border-radius:8px;"><b>3. Registros activacion / Stack:</b> <span style="color:var(--danger);font-weight:800;">89%</span> (31/35)</div>
+      <div style="background:var(--accent-subtle);padding:10px 14px;border-radius:8px;"><b>4. Gramaticas / BNF / Chomsky:</b> <span style="color:var(--danger);font-weight:800;">83%</span> (29/35)</div>
+      <div style="background:var(--accent-subtle);padding:10px 14px;border-radius:8px;"><b>5. Errores en codigo C/JS:</b> <span style="color:var(--warning);font-weight:800;">71%</span> (25/35)</div>
+      <div style="background:var(--accent-subtle);padding:10px 14px;border-radius:8px;"><b>6. Completar frases/definiciones:</b> <span style="color:var(--warning);font-weight:800;">66%</span> (23/35)</div>
+      <div style="background:var(--accent-subtle);padding:10px 14px;border-radius:8px;"><b>7. Tipos datos / arreglos / memoria:</b> <span style="color:var(--warning);font-weight:800;">63%</span> (22/35)</div>
+      <div style="background:var(--accent-subtle);padding:10px 14px;border-radius:8px;"><b>8. Expresiones regulares:</b> <span style="color:var(--info);font-weight:800;">51%</span> (18/35)</div>
+      <div style="background:var(--accent-subtle);padding:10px 14px;border-radius:8px;"><b>9. Pasaje de parametros:</b> <span style="color:var(--info);font-weight:800;">49%</span> (17/35)</div>
+      <div style="background:var(--accent-subtle);padding:10px 14px;border-radius:8px;"><b>10. Automatas de pila:</b> <span style="color:var(--info);font-weight:800;">43%</span> (15/35)</div>
+    </div>
+    <div style="margin-top:12px;padding:12px 14px;background:var(--danger-bg);border-radius:var(--radius-sm);border-left:3px solid var(--danger);font-size:0.82rem;">
+      <b>Hallazgo clave:</b> AFD/AFND subio al #1 (94%) por encima de alcance/vinculacion (91%). Los AP son mas frecuentes de lo que se creia inicialmente (43%, no 11%). Errores en codigo (71%) es mucho mas alto que lo estimado antes.
     </div>
   </div>
   <div id="probableExams"></div>
@@ -495,7 +614,7 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;-webkit-f
             stroke="url(#pomGrad)" stroke-linecap="round"
             stroke-dasharray="678.58" stroke-dashoffset="0"
             style="transform:rotate(-90deg);transform-origin:center;transition:stroke-dashoffset 1s linear;"/>
-          <defs><linearGradient id="pomGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#2d6a4f"/><stop offset="100%" style="stop-color:#40916c"/></linearGradient></defs>
+          <defs><linearGradient id="pomGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#0284c7"/><stop offset="100%" style="stop-color:#38bdf8"/></linearGradient></defs>
         </svg>
         <div class="pomodoro-time" id="pomTime">50:00</div>
       </div>
@@ -526,13 +645,13 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;-webkit-f
 <!-- TAB: PREDICCION FINAL (IA/ML Statistical Analysis) -->
 <div class="tab-content" id="tab-prediccion">
   <div class="card" style="border-left:5px solid var(--accent);margin-bottom:20px;">
-    <h2>Prediccion de Examen Final — Analisis Estadistico de 20+ Examenes FRM (2015-2026)</h2>
-    <p style="font-size:0.85rem;color:var(--text-light);line-height:1.7;">Basado en el analisis de <b>20+ examenes finales reales</b> de la catedra Leon/Brachetta (UTN FRM), incluyendo 3 examenes Campus completos (Mar 2026, Oct 2025, Ago 2025), 4+ globales con respuestas, y 15+ finales fotografiados (2015-2024). Se aplico analisis de frecuencia ponderada por recencia (examenes recientes pesan mas) para predecir que va a caer.</p>
+    <h2>Prediccion de Examen Final — Analisis en 2 Pasadas de 142 Archivos (2015-2026)</h2>
+    <p style="font-size:0.85rem;color:var(--text-secondary);line-height:1.7;"><b>Pasada 1:</b> agente leyo 109 imagenes JPG/JPEG de carpetas + PDFs con texto. <b>Pasada 2:</b> pymupdf extrajo 113 paginas de PDFs-imagen (FINALES SSL.pdf 49p, Todos ejercicios 2024 14p, etc.) + python-docx extrajo 4 DOCX. Se descartaron 2 examenes de Paradigmas (Java OOP/Prolog/Haskell mezclados en la carpeta). Tras deduplicar: <b>~35 examenes SSL unicos</b> verificados contra programa oficial de 7 unidades.</p>
   </div>
 
   <div class="card" style="margin-bottom:20px;">
-    <h2>Distribucion de probabilidad por tipo de pregunta</h2>
-    <p style="font-size:0.82rem;color:var(--text-light);margin-bottom:12px;">Probabilidad de que aparezca cada tipo de pregunta en tu proximo examen, basado en frecuencia historica ponderada:</p>
+    <h2>Distribucion de probabilidad por tipo de pregunta (~35 examenes SSL unicos)</h2>
+    <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:12px;">Frecuencia REAL calculada sobre ~35 examenes SSL unicos (deduplicados, excluidos 2 de Paradigmas). Analisis en 2 pasadas: lectura visual de imagenes + extraccion de PDFs con pymupdf + DOCX con python-docx:</p>
     <div id="predictionBars"></div>
   </div>
 
@@ -565,8 +684,10 @@ body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;-webkit-f
 </div>
 
 </div><!-- /main -->
+</div><!-- /main-wrapper -->
+</div><!-- /app-layout -->
 
-<button class="sos-btn" onclick="openSOS()">SOS Ansiedad</button>
+<button class="sos-btn" onclick="openSOS()">SOS</button>
 
 <div class="modal-overlay" id="sosModal">
   <div class="modal">
@@ -1793,7 +1914,7 @@ function countFlashMastered(){let c=0;FLASHCARDS_DATA.forEach((_,i)=>{if(data.fl
 // ============================================================
 // TABS
 // ============================================================
-document.querySelectorAll('.tab-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));document.getElementById('tab-'+btn.dataset.tab).classList.add('active');});});
+document.querySelectorAll('.nav-item').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));document.getElementById('tab-'+btn.dataset.tab).classList.add('active');if(window.innerWidth<=900)document.querySelector('.sidebar').classList.remove('open');});});
 
 // ============================================================
 // COUNTDOWN & PANEL
@@ -2231,26 +2352,40 @@ L3: t3 = x - 1
 L4:                        // fin
 </pre>`},
 
-  {id:6, prob:'MEDIA-ALTA', title:'Lema del bombeo + Front/Back-end + Garbage collection',
+  {id:6, prob:'MUY ALTA', title:'AFND→AFD + Alcance din/est + Punteros C + Errores S/SE/SD',
    etapa1:[
-    'Enuncie el lema del bombeo para lenguajes regulares. Para que se usa?',
-    'Que es el front-end y el back-end de un compilador? Que ventaja tiene separarlos?',
-    'Explique mark-and-sweep y reference counting. Cual es la debilidad de cada uno?',
-    'Que son los atributos sintetizados y heredados en una gramatica de atributos?',
+    'Explique el algoritmo de construccion de subconjuntos para convertir AFND a AFD.',
+    'Diferencie alcance estatico y dinamico con un ejemplo donde den resultados distintos.',
+    'Que es un dangling pointer? Y un memory leak? Como se previenen?',
+    'Clasifique estos errores en S/SE/SD: falta punto y coma, variable no declarada, division por cero, indice fuera de rango.',
    ],
-   etapa2:'<b>Problema 1:</b> Usando el lema del bombeo, demuestre que L = {aⁿbⁿ | n ≥ 0} no es un lenguaje regular.<br><br><b>Problema 2:</b> Identifique en el siguiente programa: (a) que variables se almacenan en memoria estatica, pila y heap, (b) donde puede haber un memory leak.<br><code>int global = 10;<br>void f() { int local = 5; int* p = malloc(100); p[0] = local; /* se retorna sin free(p) */ }<br>int main() { f(); f(); return 0; }</code>',
+   etapa2:'<b>Problema 1:</b> Dado el AFND con estados {q0,q1,q2,q3}, Σ={a,b}, q0 inicial, q3 final: δ(q0,a)={q0,q1}, δ(q0,b)={q0}, δ(q1,b)={q2}, δ(q2,b)={q3}. Construir el AFD equivalente por subconjuntos. Dar tabla completa.<br><br><b>Problema 2:</b> Analizar el codigo y dibujar stack previo a retornar de f2, con alcance dinamico y acceso estatico:<br><code>var x = 0;<br>procedure main() {<br>&nbsp;&nbsp;var x = 1;<br>&nbsp;&nbsp;procedure f1() { write(x); }<br>&nbsp;&nbsp;procedure f2(q) { var x = 2; q(); }<br>&nbsp;&nbsp;f2(f1);<br>}</code><br>(a) Que muestra con vinculacion profunda? (b) Y con superficial?',
    etapa2sol:`<h4>Problema 1</h4>
-<p>Supongamos que L es regular. Entonces existe n (del lema) tal que toda w con |w|≥n se puede escribir como w=xyz con |xy|≤n, |y|>0, y xy<sup>i</sup>z ∈ L para todo i≥0.</p>
-<p>Elegimos w = aⁿbⁿ ∈ L. Como |xy| ≤ n, tanto x como y contienen solo a's. Sea y = aᵏ con k > 0.</p>
-<p>Bombeamos con i=2: xy²z = aⁿ⁺ᵏbⁿ. Como k > 0, hay mas a's que b's, entonces aⁿ⁺ᵏbⁿ ∉ L. <b>Contradiccion</b> → L no es regular.</p>
+<p>A={q0}: a→{q0,q1}=B, b→{q0}=A<br>B={q0,q1}: a→{q0,q1}=B, b→{q0,q2}=C<br>C={q0,q2}: a→{q0,q1}=B, b→{q0,q3}=D<br>D={q0,q3}: a→{q0,q1}=B, b→{q0}=A</p>
+<pre>  δ' | a | b
+→ A  | B | A
+  B  | B | C
+  C  | B | D
+* D  | B | A   ← final (contiene q3)</pre>
+<p>Acepta cadenas que terminan en "abb".</p>
 <h4>Problema 2</h4>
-<p><b>(a) Asignacion de memoria:</b></p>
-<ul>
-<li><b>Estatica:</b> <code>global</code> (variable global, direccion fija)</li>
-<li><b>Pila:</b> <code>local</code> y <code>p</code> (el puntero mismo) — variables locales en el registro de activacion de f()</li>
-<li><b>Heap:</b> el bloque de 100 bytes apuntado por p (asignado con malloc)</li>
-</ul>
-<p><b>(b) Memory leak:</b> La funcion f() hace malloc(100) pero NUNCA hace free(p). Al retornar f(), la variable local p se destruye (se desapila), pero los 100 bytes en el heap siguen asignados y ya no hay manera de accederlos. Como f() se llama 2 veces, se pierden <b>200 bytes</b>.</p>`},
+<p><b>Stack:</b></p><pre>┌──────────────────┐ ← tope
+│ f1():             │
+│  enlace din → f2  │
+│  enlace est → main│
+├──────────────────┤
+│ f2(q=f1):         │
+│  x = 2            │
+│  enlace din → main│
+│  enlace est → main│
+├──────────────────┤
+│ main():           │
+│  x = 1            │
+├──────────────────┤
+│ Global: x = 0     │
+└──────────────────┘</pre>
+<p><b>(a) Vinculacion profunda:</b> f1 fue pasada como argumento en main donde x=1. Con vinculo profundo, f1 captura el contexto del punto de pasaje → accede a x=1 de main. <b>Muestra 1</b>.</p>
+<p><b>(b) Vinculacion superficial:</b> f1 usa el contexto del punto de llamada (f2) donde x=2. <b>Muestra 2</b>.</p>`},
 
   {id:7, prob:'MEDIA-ALTA', title:'Conversion AFND→AFD + Compilacion independiente + Tipos compuestos',
    etapa1:[
@@ -2273,80 +2408,72 @@ L4:                        // fin
 <p><b>(a) Tokens y lexemas:</b> ID("result"), ASSIGN("="), ID("base"), PLUS("+"), ID("rate"), TIMES("*"), ID("hours"), SEMICOLON(";")</p>
 <p><b>(b) Arbol sintactico:</b> Raiz: asignacion (=). Hijo izq: ID(result). Hijo der: expresion +. El + tiene hijo izq ID(base) e hijo der: expresion *. El * tiene hijo izq ID(rate) e hijo der ID(hours). El * esta mas abajo que el + (mayor precedencia).</p>`},
 
-  {id:8, prob:'MEDIA', title:'Notaciones pre/post/infija + Semantica operacional + Sobrecarga',
+  {id:8, prob:'ALTA', title:'Minimizacion AFD + Completar frases + Arreglos multidimensionales + V/F',
    etapa1:[
-    'Convierta la expresion infija (a+b)*(c-d) a notacion prefija y postfija. Explique el metodo.',
-    'Que es la semantica operacional? En que se diferencia de la denotacional?',
-    'Que es la sobrecarga (overloading)? En que se diferencia del override?',
-    'Explique que es FIRST(α) y FOLLOW(A). Para que se usan en parsers LL(1)?',
+    'Que diferencia hay entre equivalencia estructural y equivalencia por nombre de tipos?',
+    'Explique las 3 estrategias de gestion de heap: first-fit, best-fit, worst-fit.',
+    'Que es la recursion de cola? Por que es mas eficiente que la recursion normal?',
+    'Defina token, lexema y patron. De un ejemplo con codigo real.',
    ],
-   etapa2:'<b>Problema 1:</b> Evalúe la expresion postfija "5 3 + 8 2 - *" paso a paso usando una pila.<br><br><b>Problema 2:</b> Dadas las producciones E→TE\', E\'→+TE\'|ε, T→FT\', T\'→*FT\'|ε, F→(E)|id, calcule FIRST y FOLLOW de cada no terminal.',
+   etapa2:'<b>Problema 1:</b> Minimizar el AFD: Q={q0,q1,q2,q3,q4}, Σ={a,b}, q0 inicial, F={q3,q4}. δ(q0,a)=q1, δ(q0,b)=q2, δ(q1,a)=q3, δ(q1,b)=q4, δ(q2,a)=q3, δ(q2,b)=q4, δ(q3,a)=q3, δ(q3,b)=q3, δ(q4,a)=q4, δ(q4,b)=q4. Aplicar algoritmo de particiones paso a paso.<br><br><b>Problema 2:</b> Arreglo A[-3..5, -7..1, 0..4, 3..9] de tipo entero (4 bytes), dir base 500. Calcular: (a) tamaño, (b) OV, (c) dir fisica de A[-2, 0, 2, 6].',
    etapa2sol:`<h4>Problema 1</h4>
-<p>Evaluacion paso a paso con pila:</p>
-<pre style="background:#1a1a2e;color:#e0e0e0;padding:12px;border-radius:8px;font-size:0.8rem;">
-Leer 5 → push 5. Pila: [5]
-Leer 3 → push 3. Pila: [5, 3]
-Leer + → pop 3,5 → 5+3=8 → push 8. Pila: [8]
-Leer 8 → push 8. Pila: [8, 8]
-Leer 2 → push 2. Pila: [8, 8, 2]
-Leer - → pop 2,8 → 8-2=6 → push 6. Pila: [8, 6]
-Leer * → pop 6,8 → 8*6=48 → push 48. Pila: [48]
-Resultado: 48
-</pre>
+<p><b>P₀:</b> {q0,q1,q2} | {q3,q4}</p>
+<p><b>Refinar {q0,q1,q2}:</b><br>q1: a→q3∈{q3,q4}, b→q4∈{q3,q4}<br>q2: a→q3∈{q3,q4}, b→q4∈{q3,q4} → q1≡q2<br>q0: a→q1∈{q0,q1,q2}, b→q2∈{q0,q1,q2} → q0 diferente de q1/q2</p>
+<p><b>P₁:</b> {q0} | {q1,q2} | {q3,q4} → no se puede refinar mas.</p>
+<p><b>AFD minimo: 3 estados</b> (Q0={q0}, Q1={q1,q2}, Q2={q3,q4}=final).<br>δ'(Q0,a)=Q1, δ'(Q0,b)=Q1, δ'(Q1,a)=Q2, δ'(Q1,b)=Q2, δ'(Q2,a)=Q2, δ'(Q2,b)=Q2.</p>
 <h4>Problema 2</h4>
-<p><b>FIRST:</b><br>
-FIRST(F) = { (, id }<br>
-FIRST(T') = { *, ε }<br>
-FIRST(T) = FIRST(F) = { (, id }<br>
-FIRST(E') = { +, ε }<br>
-FIRST(E) = FIRST(T) = { (, id }</p>
-<p><b>FOLLOW:</b><br>
-FOLLOW(E) = { ), $ } ($ = fin de entrada)<br>
-FOLLOW(E') = FOLLOW(E) = { ), $ }<br>
-FOLLOW(T) = FIRST(E')∪FOLLOW(E) = { +, ), $ }<br>
-FOLLOW(T') = FOLLOW(T) = { +, ), $ }<br>
-FOLLOW(F) = FIRST(T')∪FOLLOW(T) = { *, +, ), $ }</p>`},
+<p>Dimensiones: d1=9, d2=9, d3=5, d4=7. Tam=4 bytes.</p>
+<p><b>(a)</b> 9×9×5×7×4 = <b>11340 bytes</b></p>
+<p><b>(b) OV:</b> 500 - (((-3×9+(-7))×5+0)×7+3)×4 = 500-(-1187×4) = 500+4748 = <b>5248</b></p>
+<p><b>(c)</b> Dir = 5248+((-2×9+0)×5+2)×7+6)×4 = 5248+(-610×4) = 5248-2440 = <b>2808</b></p>`},
 
-  {id:9, prob:'MEDIA', title:'Jerarquia Chomsky + Interprete vs compilador + Equivalencia de tipos',
+  {id:9, prob:'ALTA', title:'Gramaticas Chomsky + Pasaje con aliasing + Errores C/JS + AP',
    etapa1:[
-    'Describa la jerarquia de Chomsky completa con ejemplos de lenguajes y automatas de cada tipo.',
-    'Compare compilador, interprete y seudo-compilador. De ejemplos de lenguajes para cada uno.',
-    'Que es equivalencia nominal vs estructural de tipos? De un ejemplo donde difieran.',
-    'Explique pasaje por nombre. Por que casi no se usa hoy?',
+    'Describa la jerarquia de Chomsky con ejemplos y automatas de cada tipo.',
+    'Compare compilador, interprete y seudo-compilador con ejemplos reales.',
+    'Que es equivalencia nominal vs estructural de tipos? Ejemplo donde difieran.',
+    'Que es un automata de pila? Que lenguajes reconoce? Diferencia APD vs APND.',
    ],
-   etapa2:'<b>Problema 1:</b> Clasifique las siguientes gramaticas segun Chomsky: (a) S→aSb|ε, (b) S→aS|a, (c) aS→abS, S→ε.<br><br><b>Problema 2:</b> Explique que pasa en cada modo de pasaje con este codigo: procedure swap(x,y: int) { temp=x; x=y; y=temp; } llamado con swap(a, a) donde a=5 inicialmente.',
+   etapa2:'<b>Problema 1:</b> Clasifique estas gramaticas segun Chomsky: (a) S→aSb|ε, (b) S→aS|a, (c) aS→abS, S→ε. Luego construya AP para la (a) y trace "aabb".<br><br><b>Problema 2:</b> Procedure P(X,Y,Z){Z=5;X=Z;Z=4;Y=Z+X} llamado con P(A,B,A+C) donde A=3, B=4, C=1. Valor de B con: (a) todos por valor, (b) todos por referencia, (c) todos por valor-resultado.',
    etapa2sol:`<h4>Problema 1</h4>
-<p><b>(a) S→aSb|ε:</b> Todas las producciones tienen un solo no terminal a la izquierda → <b>Tipo 2 (libre de contexto)</b>. Genera L = {aⁿbⁿ | n ≥ 0}.</p>
-<p><b>(b) S→aS|a:</b> Producciones de la forma A→aB y A→a → <b>Tipo 3 (regular)</b>. Genera L = {aⁿ | n ≥ 1} = a⁺.</p>
-<p><b>(c) aS→abS, S→ε:</b> La produccion aS→abS tiene un terminal a la izquierda ademas del no terminal, y |aS|≤|abS| → <b>Tipo 1 (sensible al contexto)</b>.</p>
-<h4>Problema 2 — swap(a, a) con a=5</h4>
-<p><b>Por valor:</b> x=5, y=5 (copias). temp=5, x=5, y=5. Al retornar: a=5. <b>a no cambia</b> (esperado: swap no hace nada consigo mismo).</p>
-<p><b>Por referencia:</b> x e y son AMBOS alias de a. temp=a=5. x=y=a → a=5. y=temp → a=5. <b>a=5</b> (funciona igual porque ambos apuntan a lo mismo).</p>
-<p><b>Por valor-resultado:</b> Al entrar: x=5, y=5. temp=5, x=5, y=5. Al salir: se copia x→a=5, luego y→a=5. <b>a=5</b>. PERO si el orden de copia fuera diferente, podria dar un resultado diferente — este es el riesgo del valor-resultado con aliasing.</p>`},
-
-  {id:10, prob:'MEDIA', title:'Maquinas Moore/Mealy + Codigo intermedio + Closures',
-   etapa1:[
-    'Diferencie maquina de Moore y de Mealy. Como se convierte una en otra?',
-    'Que es el codigo intermedio? Nombre 2 representaciones posibles.',
-    'Que es un closure? Escriba un ejemplo en pseudocodigo o JavaScript.',
-    'Explique que es un handle en analisis Bottom-Up y las operaciones shift y reduce.',
-   ],
-   etapa2:'<b>Problema 1:</b> Diseñe una maquina de Mealy con Σ={0,1} que produzca salida 1 cada vez que detecte la secuencia "01" en la entrada. De la tabla de transiciones completa.<br><br><b>Problema 2:</b> Dado el siguiente codigo, determine: (a) el ambito de cada variable, (b) que valor imprime en ambito estatico vs dinamico.<br><code>int x = 1;<br>void f() { print(x); }<br>void g() { int x = 10; f(); }<br>main() { g(); }</code>',
-   etapa2sol:`<h4>Problema 1</h4>
-<p>Maquina de Mealy para detectar "01":</p>
-<p>Estados: q0 (inicio/ultimo fue distinto de 0), q1 (ultimo fue 0)</p>
-<pre style="background:#1a1a2e;color:#e0e0e0;padding:12px;border-radius:8px;font-size:0.8rem;">
-Estado | Entrada | Sig.Estado | Salida
-q0     | 0       | q1         | 0
-q0     | 1       | q0         | 0
-q1     | 0       | q1         | 0
-q1     | 1       | q0         | 1  ← detecto "01"
-</pre>
+<p>(a) S→aSb|ε → <b>Tipo 2</b>. Genera {aⁿbⁿ | n≥0}.<br>(b) S→aS|a → <b>Tipo 3</b>. Genera a⁺.<br>(c) aS→abS, S→ε → <b>Tipo 1</b>. |aS|≤|abS|.</p>
+<p><b>AP para (a):</b> δ(q0,a,Z₀)=(q0,AZ₀), δ(q0,a,A)=(q0,AA), δ(q0,b,A)=(q1,ε), δ(q1,b,A)=(q1,ε), δ(q1,ε,Z₀)=(q2,Z₀).</p>
+<p><b>Traza "aabb":</b> (q0,aabb,Z₀) ⊢ (q0,abb,AZ₀) ⊢ (q0,bb,AAZ₀) ⊢ (q1,b,AZ₀) ⊢ (q1,ε,Z₀) ⊢ (q2,ε,Z₀) → ACEPTA</p>
 <h4>Problema 2</h4>
-<p><b>(a) Ambitos:</b> x=1 es global. En g(), x=10 es local a g(). f() no declara x, busca en su ambito.</p>
-<p><b>(b) Ambito estatico:</b> f() busca x en su ambito lexico (donde fue definida = global). Encuentra x=1. <b>Imprime 1.</b></p>
-<p><b>Ambito dinamico:</b> f() busca x en la cadena de llamadas: fue llamada por g(), que tiene x=10 local. <b>Imprime 10.</b></p>
-<p>La mayoria de lenguajes modernos usan ambito estatico, por lo que la respuesta seria 1.</p>`},
+<p><b>(a) Por valor:</b> Copias X=3,Y=4,Z=4. Z=5,X=5,Z=4,Y=9. B no cambia → <b>B=4</b>.</p>
+<p><b>(b) Por referencia:</b> Z↔(A+C) es expresion, no L-value → <b>ERROR</b>.</p>
+<p><b>(c) Por valor-resultado:</b> Entrada X=3,Y=4,Z=4. Ejecucion Z=5,X=5,Z=4,Y=9. Salida: A←5, B←9 → <b>B=9</b>.</p>`},
+
+  {id:10, prob:'ALTA', title:'V/F conceptual + Codigo C punteros + EBNF/diagrama + Stack recursion',
+   etapa1:[
+    'Explique evaluacion en cortocircuito con un ejemplo practico de por que es util.',
+    'Que contiene un registro de activacion? Dibuje su estructura general.',
+    'Defina tipado fuerte/debil y estatico/dinamico. Clasifique C, Java, Python, JS.',
+    'Que diferencia hay entre un parser LL y un parser LR?',
+   ],
+   etapa2:'<b>Problema 1:</b> Escribir EBNF y dibujar diagramas sintacticos para: &lt;Sent&gt; ::= "e" &lt;Body&gt;, &lt;Body&gt; ::= &lt;Asig&gt; | &lt;Comp&gt;, &lt;Asig&gt; ::= "w" ":=" "n", &lt;Comp&gt; ::= "Begin" &lt;Sent&gt; { ";" &lt;Sent&gt; } "End".<br><br><b>Problema 2:</b> Dado el siguiente codigo con recursion, dibujar stack cuando fact(1) esta por retornar:<br><code>int fact(int n) {<br>&nbsp;&nbsp;if (n <= 1) return 1;<br>&nbsp;&nbsp;return n * fact(n-1);<br>}<br>main() { int r = fact(3); }</code><br>(a) Dibujar pila completa con RA. (b) Cuantos RA de fact hay simultaneamente? (c) Que tipo de recursion es?',
+   etapa2sol:`<h4>Problema 1</h4>
+<p><b>EBNF:</b><br>Sent = "e" Body<br>Body = Asig | Comp<br>Asig = "w" ":=" "n"<br>Comp = "Begin" Sent { ";" Sent } "End"</p>
+<p><b>Diagramas:</b> Sent: →(e)→[Body]→. Body: bifurcacion →[Asig]→ o →[Comp]→. Asig: →(w)→(:=)→(n)→. Comp: →(Begin)→[Sent]→ciclo(;→[Sent])→(End)→</p>
+<h4>Problema 2</h4>
+<pre>┌──────────────┐ ← tope
+│ fact(1):      │
+│  n = 1        │
+│  ret → fact(2)│
+├──────────────┤
+│ fact(2):      │
+│  n = 2        │
+│  ret → fact(3)│
+├──────────────┤
+│ fact(3):      │
+│  n = 3        │
+│  ret → main   │
+├──────────────┤
+│ main():       │
+│  r = ???      │
+└──────────────┘</pre>
+<p><b>(b)</b> 3 RA de fact simultaneamente (fact(3), fact(2), fact(1)).</p>
+<p><b>(c)</b> Recursion <b>no de cola</b> (porque despues de la llamada recursiva se multiplica por n: n*fact(n-1)). Si fuera de cola, la llamada recursiva seria la ultima operacion.</p>`},
 ];
 
 function renderProbableExams(){
@@ -2380,19 +2507,39 @@ function renderProbableExams(){
 // ============================================================
 
 // Probabilidades ponderadas por recencia (examenes 2024-2026 pesan 3x, 2022-2023 pesan 2x, anteriores 1x)
+// PREDICTION_DATA — analisis de frecuencia REAL de 22 examenes FRM (2015-2026)
+// Basado en: 4 examenes Campus (Mar 2026, Oct 2025, Ago 2025, Feb 2026), 4 globales, 14+ finales fotografiados
+// =====================================================================
+// PREDICTION_DATA — ANALISIS FINAL CONSOLIDADO
+// Fuentes: 142 archivos leidos (JPG/JPEG/PNG/PDF/DOCX) en 2 pasadas
+// Pasada 1: agente leyo 109 imagenes de carpetas + PDFs de texto
+// Pasada 2: pymupdf extrajo 113 paginas de PDFs imagen (FINALES SSL.pdf 49p, etc.)
+//           + python-docx extrajo 4 DOCX (Global 2023, Ejercicios finales, etc.)
+// Verificacion: "Examen-Agosto Ultima Version" (24p) = Java OOP/Prolog/Haskell = PARADIGMAS, excluido
+//               "2022 Julio foto" = Java OOP/Prolog/Haskell = PARADIGMAS, excluido
+// Total tras deduplicar y excluir: ~35 examenes SSL unicos verificados contra programa 7 unidades
+// =====================================================================
 const PREDICTION_DATA = [
-  {topic:'Completar frases (banco ~50 frases)',prob:98,weight:'~25 pts',freq:'4/4 Campus (100%)',color:'#e74c3c',tip:'MEMORIZAR el banco completo. Sale SIEMPRE.'},
-  {topic:'Stack: registros activacion + ambito/acceso est/din + vinculacion sup/prof',prob:92,weight:'14-26 pts',freq:'15/20+ (75%)',color:'#e67e22',tip:'Practicar TODAS las combinaciones con codigo de procedures anidados.'},
-  {topic:'Conversion AFND→AFD / Minimizacion AFD',prob:88,weight:'10-18 pts',freq:'14/20+ (70%)',color:'#f1c40f',tip:'Dominar construccion de subconjuntos y algoritmo de particiones.'},
-  {topic:'Modos de pasaje parametros (valor, ref, val-resultado, nombre, resultado, constante)',prob:82,weight:'5-26 pts',freq:'12/20+ (60%)',color:'#2ecc71',tip:'Saber TODOS los modos y calcular salida con aliasing.'},
-  {topic:'Notacion infija→prefija/postfija',prob:65,weight:'10-14 pts',freq:'8/20+ (40%)',color:'#3498db',tip:'Arbol de expresion: preorden=prefija, postorden=postfija.'},
-  {topic:'Gramaticas: clasificar Chomsky + completar producciones',prob:72,weight:'5-14 pts',freq:'10/20+ (50%)',color:'#9b59b6',tip:'Saber los 4 tipos con ejemplos y eliminar recursion izquierda.'},
-  {topic:'Clasificar errores: Sintaxis (S), Sem. Estatica (SE), Sem. Dinamica (SD)',prob:55,weight:'~5 pts',freq:'5/20+ (25%)',color:'#1abc9c',tip:'S=estructura, SE=tipos en compilacion, SD=ejecucion.'},
-  {topic:'Calculo direccion arreglos (OV, Di, L-value)',prob:58,weight:'~14 pts',freq:'6/20+ (30%)',color:'#e74c3c',tip:'Memorizar formula con OV y Di para multidimensionales.'},
-  {topic:'BNF/EBNF ↔ diagramas sintacticos',prob:55,weight:'5-10 pts',freq:'6/20+ (30%)',color:'#e67e22',tip:'Convertir entre BNF, EBNF y diagrama en ambas direcciones.'},
-  {topic:'Analisis punteros/malloc/heap (codigo C)',prob:48,weight:'5-10 pts',freq:'4/20+ (20%)',color:'#3498db',tip:'Trazar que pasa con punteros despues de malloc, pasaje y retorno.'},
-  {topic:'V/F sobre tipos, memoria, estructuras (~24 afirmaciones)',prob:42,weight:'20-36 pts',freq:'4/20+ (20%)',color:'#9b59b6',tip:'Aparece mas en globales que en finales Campus.'},
-  {topic:'Automatas de pila (APD/APND)',prob:40,weight:'10-14 pts',freq:'4/20+ (20%)',color:'#1abc9c',tip:'Construir AP con traza para lenguajes tipo x^n y^m z^p.'},
+  {topic:'AFD/AFND: construir, minimizar, convertir (U2)',prob:94,weight:'10-18 pts',freq:'33/35 examenes (94%)',color:'#ef4444',tip:'Aparece en practicamente TODO examen. Dominar: tabla P(Q), construccion subconjuntos, minimizacion por particiones.'},
+  {topic:'Alcance est/din + vinculacion profunda/superficial (U7)',prob:91,weight:'14-29 pts',freq:'32/35 examenes (91%)',color:'#ef4444',tip:'Segundo tema mas frecuente. Practicar TODAS las combinaciones: acceso est/din × alcance est/din × vinculo prof/superf.'},
+  {topic:'Registros de activacion / Stack / Display (U7)',prob:89,weight:'14-29 pts',freq:'31/35 examenes (89%)',color:'#ef4444',tip:'Casi siempre acompaña al tema de alcance. Dibujar pila con enlaces din/est, variables, parametros.'},
+  {topic:'Gramaticas: Chomsky, BNF, EBNF, diagramas (U1)',prob:83,weight:'5-14 pts',freq:'29/35 examenes (83%)',color:'#f97316',tip:'Clasificar 4 tipos, completar producciones, convertir BNF↔EBNF, dibujar diagrama sintactico. Eliminar rec. izq.'},
+  {topic:'Analisis errores en codigo C/JS/pseudocodigo (U4)',prob:71,weight:'5-15 pts',freq:'25/35 examenes (71%)',color:'#f97316',tip:'Identificar tipo de error (lexico/sintactico/semantico). Trazar ejecucion. Codigo C con punteros y JS con coercion.'},
+  {topic:'Completar frases / definiciones conceptuales',prob:66,weight:'17-25 pts',freq:'23/35 examenes (66%)',color:'#eab308',tip:'MEMORIZAR banco de ~50 frases. En Campus vale ~25 pts (100% de Campus recientes). Las trampas son sutiles.'},
+  {topic:'Tipos datos / memoria / arreglos con direccion (U6)',prob:63,weight:'10-14 pts',freq:'22/35 examenes (63%)',color:'#eab308',tip:'Formula OV y dir fisica para arreglos multidimensionales. Stack vs heap vs estatica. Struct/union/padding.'},
+  {topic:'Expresiones regulares (U2)',prob:51,weight:'5-10 pts',freq:'18/35 examenes (51%)',color:'#22c55e',tip:'Construir ER para lenguaje dado, convertir ER↔AFD. Teorema de Kleene.'},
+  {topic:'Pasaje parametros: valor, ref, val-resultado, nombre (U7)',prob:49,weight:'5-26 pts',freq:'17/35 examenes (49%)',color:'#22c55e',tip:'Calcular salida con aliasing (f(a,a)). Saber 6 modos. Detectar cuando NO se puede pasar expresion por ref/nombre.'},
+  {topic:'Automatas de pila AP (U2)',prob:43,weight:'10-14 pts',freq:'15/35 examenes (43%)',color:'#3b82f6',tip:'Mas frecuente de lo que se creia. Construir AP con traza (descripcion instantanea). APD vs APND.'},
+  {topic:'V/F (verdadero/falso) conceptual',prob:40,weight:'20-36 pts',freq:'14/35 examenes (40%)',color:'#3b82f6',tip:'CRECIENTE desde 2022. Mas en globales. Temas: tipos, memoria, compiladores, gramaticas.'},
+  {topic:'Clasificar errores S / SE / SD',prob:34,weight:'~5 pts',freq:'12/35 examenes (34%)',color:'#a855f7',tip:'CRECIENTE desde 2022. S=estructura, SE=compilacion (tipos), SD=ejecucion. "var no declarada" = SE.'},
+  {topic:'Compiladores vs interpretes / fases (U4)',prob:31,weight:'~5 pts',freq:'11/35 examenes (31%)',color:'#a855f7',tip:'Front-end/back-end, 6 fases, tabla de simbolos. Seudo-compiladores (bytecode+VM).'},
+  {topic:'Sentencias de control / codigo intermedio (U5)',prob:29,weight:'5-10 pts',freq:'10/35 examenes (29%)',color:'#14b8a6',tip:'Recursion normal/cola/transitiva. Traduccion while/if/for a codigo 3-direcciones.'},
+  {topic:'Analisis lexico / parsers LL-LR (U3)',prob:26,weight:'5-10 pts',freq:'9/35 examenes (26%)',color:'#14b8a6',tip:'Tokens/lexemas/patrones. FIRST/FOLLOW. Flex/Bison. Diferencia LL vs LR.'},
+  {topic:'Punteros y malloc en C (heap/stack)',prob:26,weight:'5-10 pts',freq:'9/35 examenes (26%)',color:'#64748b',tip:'CRECIENTE desde 2024. Memory leak, dangling pointer, pasaje punteros por valor. Trazar malloc/free.'},
+  {topic:'Modos pasaje (describir→identificar modo)',prob:23,weight:'5 pts',freq:'8/35 examenes (23%)',color:'#64748b',tip:'6 descripciones textuales → valor, referencia, nombre, constante, val-resultado, resultado.'},
+  {topic:'Notacion postfija/prefija (conversion)',prob:17,weight:'10-14 pts',freq:'6/35 examenes (17%)',color:'#94a3b8',tip:'Arbol de expresion → preorden=prefija, postorden=postfija. Verificar con pila.'},
+  {topic:'Multiple choice conceptual (formato Campus)',prob:17,weight:'5 pts c/u',freq:'6/35 examenes (17%)',color:'#94a3b8',tip:'CRECIENTE en Campus 2024-2026. Equivalencia tipos, tipologia JS, JIT, alcance C++.'},
+  {topic:'GC / dangling ptr / memory leaks (conceptual)',prob:14,weight:'en V/F',freq:'5/35 examenes (14%)',color:'#94a3b8',tip:'Mark-and-sweep, reference counting, lapidas/tumbas. Aparece mas en V/F que como ejercicio.'},
 ];
 
 // Banco de frases "Completar" — extraido de 3 examenes Campus reales (Mar 2026, Oct 2025, Ago 2025)
@@ -2572,8 +2719,26 @@ const SIM_EXAMS = [
    solucion:`<b>(a)</b> malloc(9*sizeof(int)) = 9 × 4 = <b>36 bytes</b> en el heap.<br><br><b>(b)</b> ptr se pasa POR VALOR a miFuncion. Dentro de la funcion, p es una COPIA de ptr. Cuando se hace p = malloc(...), se modifica la copia local p, NO el ptr original. Al retornar, ptr sigue apuntando a &i. <b>ptr = &i (la direccion de i).</b><br><br><b>(c)</b> printf("%d", *ptr) → *ptr = *(&i) = i = <b>1</b>. Muestra <b>1</b>.<br><br><b>Nota:</b> Los 36 bytes en el heap quedan como <b>memory leak</b> porque nadie tiene referencia a ellos (p se destruyo al salir de miFuncion y nunca se hizo free).`},
 ]},
 
-{id:2,title:'Modelo B — Errores S/SE/SD + Modos pasaje + Minimizar AFD + Codigo C/JS',prob:'ALTA',
+{id:2,title:'Modelo B — Minimizar AFD + Stack alcance/vinculacion + Errores S/SE/SD + Codigo C/JS',prob:'MUY ALTA',
  questions:[
+  {pts:10,cat:'Gramaticas (base obligatoria)',enunciado:'Completar las reglas de produccion que generan L1={bⁿaᵐ | n>0, m>0} ∪ L2={aⁿbᵐ | n>0, m>0}:<br>S→AB, S→___, A→a, B→Bb, B→___, A→___<br>(a) Completar las reglas faltantes<br>(b) De que tipo es la gramatica resultante?<br>(c) Eliminar la recursion por izquierda',
+   solucion:`<b>Reglas completas:</b> S→AB | <b>BA</b>, A→a | <b>aA</b>, B→Bb | <b>b</b><br><br><b>(b)</b> B→Bb tiene un solo no terminal a la izquierda → <b>Tipo 2 (Libre de contexto)</b>. No es regular porque mezcla lineales por derecha (A→aA) con lineales por izquierda (B→Bb).<br><br><b>(c) Eliminar rec. izq. de B→Bb|b:</b><br>B → bB\'<br>B\' → bB\' | ε`},
+  {pts:14,cat:'Stack + alcance/vinculacion (base obligatoria)',enunciado:'<code>var x = 5;<br>procedure main() {<br>&nbsp;&nbsp;var x = 10;<br>&nbsp;&nbsp;procedure f() { write(x); }<br>&nbsp;&nbsp;procedure g() { var x = 20; f(); }<br>&nbsp;&nbsp;g();<br>}</code><br>(a) Dibujar pila previo a retornar de f() con enlaces estaticos y dinamicos.<br>(b) Que muestra con alcance estatico? (c) Y con dinamico?',
+   solucion:`<pre>┌──────────────┐ ← tope
+│ f():          │
+│  enlace din → g  │
+│  enlace est → main │
+├──────────────┤
+│ g():          │
+│  x = 20       │
+│  enlace din → main │
+│  enlace est → main │
+├──────────────┤
+│ main():       │
+│  x = 10       │
+├──────────────┤
+│ Global: x = 5 │
+└──────────────┘</pre><b>(b) Estatico:</b> f() sigue enlace est → main → x=10. <b>Muestra 10.</b><br><b>(c) Dinamico:</b> f() sigue cadena de llamadas → g() → x=20. <b>Muestra 20.</b>`},
   {pts:5,cat:'Clasificar errores',enunciado:'Clasifique cada error como S (Sintaxis), SE (Semantica Estatica) o SD (Semantica Dinamica):<br>1. Falta punto y coma al final de sentencia<br>2. Sumar un int con un string sin conversion<br>3. Acceso a indice negativo de un arreglo<br>4. Usar una variable no declarada<br>5. Recursion infinita (stack overflow)<br>6. Token invalido: 3abc como identificador<br>7. Llamar funcion con cantidad incorrecta de argumentos<br>8. Dereferencia de puntero NULL',
    solucion:`1. Falta punto y coma → <b>S</b> (estructura del codigo)<br>2. Sumar int + string → <b>SE</b> (incompatibilidad de tipos detectada en compilacion)<br>3. Indice negativo → <b>SD</b> (out of bounds en ejecucion)<br>4. Variable no declarada → <b>SE</b> (el compilador verifica declaraciones)<br>5. Stack overflow → <b>SD</b> (solo se detecta cuando la pila se llena en ejecucion)<br>6. Token 3abc → <b>S</b> (error lexico, identificador no puede empezar con digito)<br>7. Args incorrectos → <b>SE</b> (el compilador chequea firmas)<br>8. NULL dereference → <b>SD</b> (segfault en ejecucion)`},
   {pts:5,cat:'Modos de pasaje',enunciado:'Clasificar cada descripcion con su modo de pasaje (valor, referencia, constante, nombre, valor-resultado, resultado):<br>(a) No puede modificarse el valor de la variable asociada al parametro en el ambito de llamada<br>(b) Evalua la expresion asociada cada vez que se referencia el parametro en la subrutina<br>(c) Modifica el valor de la variable vinculada al parametro cada vez que se asigna valor al parametro<br>(d) No puede modificarse localmente el valor transferido al parametro<br>(e) Permite modificar el valor de la variable al terminar la ejecucion de la subrutina<br>(f) No transfiere valor desde el ambito de llamada, pero permite modificar la variable al terminar',
@@ -2590,8 +2755,17 @@ const SIM_EXAMS = [
    solucion:`<b>(a) SI ejecuta</b> (JavaScript es debilmente tipado y dinamico).<br><br><b>(b) Analisis linea por linea:</b><br>Linea 4: <code>"100" * 3</code> → JS coerce "100" a numero 100 → subtotal = 300<br>Linea 6: <code>300 + (300 * 0.21)</code> = 300 + 63 = total = 363<br>Linea 5: promedio queda <b>undefined</b><br><br><b>Salida:</b><br><code>Subtotal: 300</code><br><code>Total: $363</code><br><code>Promedio: $undefined</code><br><br><b>Nota:</b> No da error porque JS convierte undefined a string "undefined" al concatenar con +. En un lenguaje fuertemente tipado esto seria un error.`},
 ]},
 
-{id:3,title:'Modelo C — Completar frases + Pasaje con aliasing + AP + Arreglos',prob:'ALTA',
+{id:3,title:'Modelo C — AFND→AFD + Gramaticas + Completar frases + Pasaje aliasing + AP + Arreglos',prob:'MUY ALTA',
  questions:[
+  {pts:14,cat:'AFND→AFD (base obligatoria)',enunciado:'Dado el AFND: Q={q0,q1,q2}, Σ={a,b}, q0 inicial, {q2} final:<br>δ(q0,a)={q0,q1}, δ(q0,b)={q0}, δ(q1,b)={q2}<br>Construir AFD equivalente por subconjuntos. Dar tabla completa y dibujar.',
+   solucion:`A={q0}: a→{q0,q1}=B, b→{q0}=A<br>B={q0,q1}: a→{q0,q1}=B, b→{q0,q2}=C<br>C={q0,q2}: a→{q0,q1}=B, b→{q0}=A<pre>  δ' | a | b
+→ A  | B | A
+  B  | B | C
+* C  | B | A</pre>3 estados. Final C (contiene q2). Acepta cadenas que terminan en "ab".`},
+  {pts:10,cat:'Gramaticas Chomsky (base obligatoria)',enunciado:'Clasificar segun Chomsky:<br>(a) S→aS|bA, A→bA|b<br>(b) S→aSb|ε<br>(c) aB→abB, B→b, S→aB',
+   solucion:`(a) Todas A→aB o A→a → <b>Tipo 3 (Regular)</b><br>(b) Un solo NT a la izquierda → <b>Tipo 2 (Libre de contexto)</b><br>(c) aB→abB tiene |aB|≤|abB| → <b>Tipo 1 (Sensible al contexto)</b>`},
+  {pts:14,cat:'Stack alcance/vinculacion (base obligatoria)',enunciado:'<code>procedure prg() {<br>&nbsp;&nbsp;var x = 1;<br>&nbsp;&nbsp;procedure proc2() { write(x); x = 0; }<br>&nbsp;&nbsp;procedure proc3() {<br>&nbsp;&nbsp;&nbsp;&nbsp;var x = 3;<br>&nbsp;&nbsp;&nbsp;&nbsp;proc4(proc2);<br>&nbsp;&nbsp;}<br>&nbsp;&nbsp;procedure proc4(q) { var x = 4; q(); }<br>&nbsp;&nbsp;proc3();<br>}</code><br>(a) Que muestra con alcance din + acceso est + vinculo profundo?<br>(b) Y con vinculo superficial?',
+   solucion:`Cadena: prg→proc3→proc4(proc2)→proc2()<br><b>(a) Vinculo PROFUNDO:</b> proc2 fue pasada como arg en proc3 donde x=3. Con vinculo profundo, proc2 captura contexto del punto de pasaje → x=3. <b>Muestra 3.</b><br><b>(b) Vinculo SUPERFICIAL:</b> proc2 usa contexto del punto de llamada (proc4) donde x=4. <b>Muestra 4.</b>`},
   {pts:25,cat:'Completar frases',enunciado:'Complete cada frase con la opcion correcta (seleccione del banco):<br>1. Las notaciones BNF y EBNF permiten describir ___<br>2. Garbage Collector es una tecnica para prevenir ___<br>3. Lapidas y tumbas se usa para prevenir ___<br>4. Los automatas de estados finitos reconocen lenguajes ___<br>5. La implementacion de la semantica de una variable vincula ___<br>6. Los cuatro tipos de traductores son ___<br>7. Ordinales y No-Ordinales son tipos de datos ___<br>8. continue y break son enunciados de ___<br>9. La vinculacion superficial y profunda aplican cuando ___<br>10. El mecanismo de pasaje por valor-resultado es util en contextos de ___',
    solucion:`1. BNF y EBNF permiten describir → <b>gramaticas independientes del contexto</b><br>2. Garbage Collector → <b>Acumulacion de basura</b><br>3. Lapidas y tumbas → <b>Dangling references</b><br>4. AEF reconocen → <b>lenguajes regulares</b><br>5. Semantica de variable vincula → <b>un R-value con un L-value</b><br>6. Cuatro traductores → <b>traductor de un paso, compilador nativo, interprete puro, interprete parcial</b><br>7. Ordinales y No-Ordinales → <b>escalares</b><br>8. continue y break → <b>control explicito de flujo</b><br>9. Vinculacion sup/prof → <b>hay pasaje de funciones como argumentos a otras funciones</b><br>10. Valor-resultado → <b>programacion paralela</b>`},
   {pts:26,cat:'Pasaje parametros con aliasing',enunciado:'Dados A=3, B=4, C=1 y:<br><code>procedure P(X, Y, Z) {<br>&nbsp;&nbsp;Z = 5<br>&nbsp;&nbsp;X = Z<br>&nbsp;&nbsp;Z = 4<br>&nbsp;&nbsp;Y = Z + X<br>}<br>P(A, B, A + C)</code><br>Indicar el valor de B despues de P para:<br>(a) Los tres por valor<br>(b) Los tres por referencia<br>(c) Los tres por valor-resultado<br>(d) Los dos primeros por referencia, tercero por nombre<br>(e) Los tres por resultado',
@@ -2602,8 +2776,12 @@ const SIM_EXAMS = [
    solucion:`<b>Dimensiones:</b><br>D1: -3..5 → tamaño d1 = 5-(-3)+1 = 9<br>D2: -7..1 → tamaño d2 = 1-(-7)+1 = 9<br>D3: 0..4 → tamaño d3 = 4-0+1 = 5<br>D4: 3..9 → tamaño d4 = 9-3+1 = 7<br><br><b>(a) Tamaño:</b> d1×d2×d3×d4×tam = 9×9×5×7×4 = <b>11340 bytes</b><br><br><b>(b) OV (Origen Virtual):</b><br>Formula row-major con limites inferiores li:<br>OV = base - (((li1×d2 + li2)×d3 + li3)×d4 + li4) × tam<br>= 500 - (((-3×9 + (-7))×5 + 0)×7 + 3) × 4<br>= 500 - ((-27-7)×5×7 + 3) × 4<br>= 500 - ((-34×5)×7 + 3) × 4<br>= 500 - (-170×7 + 3) × 4<br>= 500 - (-1190 + 3) × 4<br>= 500 - (-1187) × 4<br>= 500 + 4748 = <b>5248</b><br><br><b>(c) Dir fisica:</b><br>Dir = OV + ((i1×d2 + i2)×d3 + i3)×d4 + i4) × tam<br>= 5248 + (((-2×9 + 0)×5 + 2)×7 + 6) × 4<br>= 5248 + ((-18×5 + 2)×7 + 6) × 4<br>= 5248 + ((-90+2)×7 + 6) × 4<br>= 5248 + (-88×7 + 6) × 4<br>= 5248 + (-616+6) × 4<br>= 5248 + (-610) × 4<br>= 5248 - 2440 = <b>2808</b>`},
 ]},
 
-{id:4,title:'Modelo D — BNF/EBNF + Stack con display + Modos pasaje detallado + Multiple choice',prob:'MEDIA-ALTA',
+{id:4,title:'Modelo D — Minimizar AFD + BNF/EBNF + Stack con display + Modos pasaje + Gramaticas',prob:'MUY ALTA',
  questions:[
+  {pts:14,cat:'Minimizar AFD (base obligatoria)',enunciado:'Minimizar el AFD: Q={q0,q1,q2,q3,q4}, Σ={0,1}, q0 inicial, F={q2,q4}.<br>δ(q0,0)=q1, δ(q0,1)=q3, δ(q1,0)=q2, δ(q1,1)=q4, δ(q2,0)=q2, δ(q2,1)=q2, δ(q3,0)=q4, δ(q3,1)=q2, δ(q4,0)=q4, δ(q4,1)=q4.',
+   solucion:`<b>P₀:</b> {q0,q1,q3} | {q2,q4}<br><b>Refinar {q0,q1,q3}:</b><br>q0: 0→q1∈G1, 1→q3∈G1<br>q1: 0→q2∈G2, 1→q4∈G2<br>q3: 0→q4∈G2, 1→q2∈G2<br>q0→(G1,G1), q1 y q3→(G2,G2) → separar q0.<br><b>P₁:</b> {q0} | {q1,q3} | {q2,q4}<br>Refinar {q1,q3}: q1: 0→q2∈{q2,q4}, 1→q4∈{q2,q4}. q3: 0→q4∈{q2,q4}, 1→q2∈{q2,q4}. Iguales → no separan.<br>Refinar {q2,q4}: ambos loop a si mismos → iguales.<br><b>AFD minimo: 3 estados</b> A={q0}, B={q1,q3}, C={q2,q4}(final).<br>δ\'(A,0)=B, δ\'(A,1)=B, δ\'(B,0)=C, δ\'(B,1)=C, δ\'(C,0)=C, δ\'(C,1)=C.`},
+  {pts:10,cat:'Gramaticas Chomsky (base obligatoria)',enunciado:'Dada G con producciones S→aA|bB, A→aA|a, B→bB|b:<br>(a) Clasificar segun Chomsky.<br>(b) Determinar L(G).<br>(c) Escribir la ER equivalente.',
+   solucion:`<b>(a)</b> Todas producciones X→aY o X→a → <b>Tipo 3 (Regular)</b>, lineal por derecha.<br><b>(b)</b> S→aA genera aa⁺ = a². S→bB genera bb⁺ = b². L(G) = {aⁿ | n≥2} ∪ {bⁿ | n≥2} = a²⁺ ∪ b²⁺.<br><b>(c)</b> ER = <code>aa+ | bb+</code> o equivalente <code>a{2,} | b{2,}</code>.`},
   {pts:10,cat:'BNF/EBNF y diagramas',enunciado:'Dadas las reglas BNF:<br><code>&lt;Sent&gt; ::= \'e\' &lt;Sent-sin_ET&gt;<br>&lt;Sent-sin_ET&gt; ::= &lt;Sent-Asig&gt; | &lt;Sent-Comp&gt;<br>&lt;Sent-Asig&gt; ::= \'w\' \':=\' \'n\'<br>&lt;Sent-Comp&gt; ::= "Begin" &lt;Sent&gt; { \';\' &lt;Sent&gt; } "End"</code><br>(a) Escribir la EBNF equivalente<br>(b) Dibujar los diagramas sintacticos',
    solucion:`<b>(a) EBNF:</b><br>Sent = "e" Sent-sin_ET<br>Sent-sin_ET = Sent-Asig | Sent-Comp<br>Sent-Asig = "w" ":=" "n"<br>Sent-Comp = "Begin" Sent { ";" Sent } "End"<br><br><b>(b) Diagramas sintacticos:</b><br><br>Sent: → [e] → [Sent-sin_ET] →<br><br>Sent-sin_ET: → [Sent-Asig] →<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ [Sent-Comp] →<br><br>Sent-Asig: → (w) → (:=) → (n) →<br><br>Sent-Comp: → (Begin) → [Sent] →──────→ (End) →<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;←(;)← [Sent] ←<br><br>Rectangulos = no terminales, circulos = terminales, ciclo = { }.`},
   {pts:26,cat:'Stack con display',enunciado:'<code>var n := 0;<br>PROCEDURE main() {<br>&nbsp;&nbsp;var x;<br>&nbsp;&nbsp;PROCEDURE P() { write(n, x); n := n + 1; }<br>&nbsp;&nbsp;PROCEDURE Q() {<br>&nbsp;&nbsp;&nbsp;&nbsp;var y := x;<br>&nbsp;&nbsp;&nbsp;&nbsp;n := 0;<br>&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE R() {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x := x + 1; y := y + x;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (y < 6) R(); P();<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;R(); P(); if (x < 5) Q();<br>&nbsp;&nbsp;}<br>&nbsp;&nbsp;x := 2; Q();<br>}<br>main();</code><br>Suponiendo alcance y acceso DINAMICOS:<br>(a) ¿Que muestra el write?<br>(b) Si se usa display, ¿cuantos punteros tiene cada RA?<br>(c) ¿Cual es la secuencia de llamadas?',
@@ -2770,8 +2948,26 @@ procA: {a, b, enlace est→global}</pre><br><b>(b) Desde procE (acceso EST):</b>
    solucion:`<b>Arbol de expresion:</b> Respetar precedencia (*/antes de +) y asociatividad izquierda.<br>8/7*2+4+(9+((7-3)*2))<br>= ((8/7)*2)+4+(9+((7-3)*2))<br><br><b>Prefija:</b> <code>++*/8724+9*-732</code><br><b>Postfija:</b> <code>87/2*4+73-2*9++</code><br><br><b>Verificacion postfija:</b> 8→[8] 7→[8,7] /→[8/7] 2→[..,2] *→[8/7*2] 4→[..,4] +→[8/7*2+4] 7→[..,7] 3→[..,7,3] -→[..,4] 2→[..,4,2] *→[..,8] 9→[..,8,9] +→[..,17] +→[8/7*2+4+17] ✓`},
 ]},
 
-{id:10,title:'Examen 10 — V/F del global + AP + Codigo C++ completo',prob:'MEDIA-ALTA',
+{id:10,title:'Examen 10 — AFD + Gramaticas + V/F global + AP + Stack + Codigo C',prob:'MUY ALTA',
  questions:[
+  {pts:14,cat:'AFND→AFD (base obligatoria)',enunciado:'Dado AFND: Q={q0,q1,q2,q3}, Σ={0,1}, q0 inicial, {q3} final:<br>δ(q0,0)={q0}, δ(q0,1)={q0,q1}, δ(q1,0)={q2}, δ(q2,1)={q3}.<br>Construir AFD equivalente.',
+   solucion:`A={q0}: 0→{q0}=A, 1→{q0,q1}=B<br>B={q0,q1}: 0→{q0,q2}=C, 1→{q0,q1}=B<br>C={q0,q2}: 0→{q0}=A, 1→{q0,q1,q3}=D<br>D={q0,q1,q3}: 0→{q0,q2}=C, 1→{q0,q1}=B<pre>  δ' | 0 | 1
+→ A  | A | B
+  B  | C | B
+  C  | A | D
+* D  | C | B</pre>Acepta cadenas que contienen "101" como subcadena.`},
+  {pts:10,cat:'Gramaticas + EBNF (base obligatoria)',enunciado:'Dada la BNF: &lt;E&gt; ::= &lt;E&gt; "+" &lt;T&gt; | &lt;T&gt;, &lt;T&gt; ::= &lt;T&gt; "*" &lt;F&gt; | &lt;F&gt;, &lt;F&gt; ::= "id" | "(" &lt;E&gt; ")"<br>(a) Eliminar recursion por izquierda. (b) Escribir EBNF equivalente.',
+   solucion:`<b>(a)</b> E→TE\', E\'→+TE\'|ε, T→FT\', T\'→*FT\'|ε, F→(E)|id<br><b>(b) EBNF:</b> E = T { "+" T }, T = F { "*" F }, F = "id" | "(" E ")"`},
+  {pts:14,cat:'Stack + alcance (base obligatoria)',enunciado:'<code>var x = 1;<br>function f() { write(x); }<br>function g() { var x = 10; f(); }<br>main() { g(); }</code><br>(a) Dibujar pila previo a write en f(). (b) Que muestra con alcance estatico? (c) Con dinamico?',
+   solucion:`<pre>┌─────────┐ ← tope
+│ f():     │ enlace din→g, enlace est→global
+├─────────┤
+│ g():     │ x=10, enlace din→main, enlace est→global
+├─────────┤
+│ main():  │ enlace din→global
+├─────────┤
+│ Global:  │ x=1
+└─────────┘</pre><b>(b) Estatico:</b> f() sigue enlace est → global → x=1. <b>Muestra 1.</b><br><b>(c) Dinamico:</b> f() sigue cadena de llamadas → g() → x=10. <b>Muestra 10.</b>`},
   {pts:36,cat:'V/F tipo global recuperatorio (24 afirmaciones)',enunciado:'Marcar V o F:<br>1. Una estructura de datos es Homogenea cuando tiene un numero fijo de componentes<br>2. En cualquier programa, todos los objetos de datos existen desde el principio<br>3. El ambito estatico se identifica por la posicion de la declaracion en el programa<br>4. Una estructura es dinamica si el numero de elementos puede crecer en ejecucion<br>5. En lenguajes sin anidar subrutinas, se mantiene enlace estatico y dinamico<br>6. Los programas interpretados son menos portables que los compilados<br>7. Lapidas asocia a variables en stack un puntero en heap con la direccion del bloque<br>8. La verificacion de tipos se realiza exclusivamente en tiempo de traduccion<br>9. Una estructura se mapea secuencialmente en un solo bloque desde una direccion base<br>10. Los lenguajes con verificacion dinamica de tipos son menos eficientes en velocidad<br>11. Los lenguajes fuertemente tipeados garantizan menor porcentaje de errores en ejecucion<br>12. La coercion es conversion implicita del compilador<br>13. Un operador sobrecargado recibe argumentos de distinto tipo<br>14. Una estructura homogenea tiene todos los componentes del mismo tipo<br>15. En reference counting, cuando el contador llega a 0 se libera el bloque<br>16. Los tokens son categorias lexicas a las que se asocia cada lexema<br>17. Los interpretes no construyen tabla de simbolos<br>18. JavaScript soporta funciones de orden superior<br>19. Los AP pueden reconocer cualquier lenguaje formal<br>20. Un parser transforma lexemas en tokens<br>21. Los analizadores recursivos descendentes procesan gramaticas recursivas a izquierda<br>22. Los pseudocompilados buscan equilibrio entre eficiencia de compilados y flexibilidad de interpretados<br>23. La semantica estatica se calcula en tiempo de ejecucion<br>24. La precedencia y asociatividad surge de la sintaxis de expresiones en notacion infija',
    solucion:`1. Homogenea = numero fijo → <b>F</b> (homogenea = mismo TIPO, no cantidad fija)<br>2. Todos los objetos existen desde el principio → <b>F</b> (los dinamicos y automaticos no)<br>3. Ambito estatico por posicion en programa → <b>V</b><br>4. Estructura dinamica crece/decrece → <b>V</b><br>5. Sin anidar: enlace est + din → <b>F</b> (sin anidamiento no se necesita enlace estatico)<br>6. Interpretados menos portables → <b>F</b> (son MAS portables)<br>7. Lapidas: puntero en heap → <b>V</b><br>8. Verificacion solo en traduccion → <b>F</b> (tambien dinamica en ejecucion)<br>9. Secuencial en un bloque → <b>V</b><br>10. Dinamicos menos eficientes → <b>V</b><br>11. Fuertemente tipados menos errores → <b>V</b><br>12. Coercion = implicita → <b>V</b><br>13. Sobrecargado = distintos tipos → <b>F</b> (mismo nombre, diferentes FIRMAS)<br>14. Homogenea = mismo tipo → <b>V</b><br>15. Ref counting → 0 → liberar → <b>V</b><br>16. Tokens = categorias lexicas → <b>V</b><br>17. Interpretes no construyen TS → <b>F</b> (si la construyen)<br>18. JS funciones orden superior → <b>V</b><br>19. AP reconocen cualquier lenguaje → <b>F</b> (solo LLC, Tipo 2)<br>20. Parser: lexemas→tokens → <b>F</b> (eso lo hace el SCANNER)<br>21. Rec. descendentes + rec. izquierda → <b>F</b> (causa loop infinito)<br>22. Pseudocompilados equilibrio → <b>V</b><br>23. Sem. estatica en ejecucion → <b>F</b> (en COMPILACION)<br>24. Precedencia surge de sintaxis infija → <b>F</b> (surge de reglas SEMANTICAS codificadas en la gramatica)`},
   {pts:14,cat:'AP para lenguaje especifico (de finales 2024)',enunciado:'Dado L = {aⁱbʲcᵏ | i,k ≥ 1 y i < k} y el APD = ({q0,q1,q2}, {a,b,c}, {A,Z}, f, q0, Z, {q2}). Dibuje el APD que reconoce L por alcanzar estado final y vaciar la pila. Z precargado.',
@@ -2802,6 +2998,55 @@ function renderPredictionTab(){
 // ============================================================
 // INIT
 // ============================================================
+// ============================================================
+// DARK MODE
+// ============================================================
+function toggleTheme(){
+  const html=document.documentElement;
+  const isDark=html.getAttribute('data-theme')==='dark';
+  html.setAttribute('data-theme',isDark?'light':'dark');
+  localStorage.setItem('ssl_theme',isDark?'light':'dark');
+  const btn=document.getElementById('themeToggleBtn');
+  if(btn)btn.textContent=isDark?'\u263E':'\u2600';
+  const sBtn=document.getElementById('themeToggleSidebar');
+  if(sBtn)sBtn.textContent=isDark?'Modo Oscuro':'Modo Claro';
+}
+(function(){const t=localStorage.getItem('ssl_theme');if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');setTimeout(()=>{const btn=document.getElementById('themeToggleBtn');if(btn)btn.textContent='\u2600';const sBtn=document.getElementById('themeToggleSidebar');if(sBtn)sBtn.textContent='Modo Claro';},0);}})();
+
+// ============================================================
+// GLOBAL SEARCH
+// ============================================================
+function handleSearch(q){
+  const r=document.getElementById('searchResults');
+  if(!q||q.length<2){r.classList.remove('show');r.innerHTML='';return;}
+  const ql=q.toLowerCase();const results=[];
+  EXERCISES.forEach(e=>{if(e.desc.toLowerCase().includes(ql)||(e.solution&&e.solution.toLowerCase().includes(ql)))results.push({type:'Ejercicio',label:`Ej ${e.id} (U${e.unit}): ${e.desc.slice(0,60)}...`,tab:'ejercicios'});});
+  THEORY_TOPICS.forEach(u=>u.topics.forEach(t=>{if(t.title.toLowerCase().includes(ql)||(t.content&&t.content.toLowerCase().includes(ql)))results.push({type:'Teoria',label:t.title,tab:'teoria'});}));
+  FLASHCARDS_DATA.forEach((f,i)=>{if(f.q.toLowerCase().includes(ql)||f.a.toLowerCase().includes(ql))results.push({type:'Flashcard',label:f.q.slice(0,60),tab:'flashcards'});});
+  PHRASE_BANK.forEach(p=>{if(p.phrase.toLowerCase().includes(ql)||p.correct.toLowerCase().includes(ql))results.push({type:'Frase',label:p.phrase.slice(0,60),tab:'prediccion'});});
+  QUIZ_QUESTIONS.forEach(qq=>{if(qq.q.toLowerCase().includes(ql))results.push({type:'Quiz',label:qq.q.slice(0,60),tab:'examen'});});
+  if(!results.length){r.innerHTML='<div class="search-result-item" style="color:var(--text-light);">Sin resultados</div>';r.classList.add('show');return;}
+  r.innerHTML=results.slice(0,8).map(res=>`<div class="search-result-item" onclick="navigateToTab('${res.tab}');document.getElementById('searchResults').classList.remove('show');document.getElementById('globalSearch').value='';"><span style="font-size:0.7rem;color:var(--accent);font-weight:700;text-transform:uppercase;">${res.type}</span><br>${res.label}</div>`).join('');
+  r.classList.add('show');
+}
+function navigateToTab(tab){
+  document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
+  const navItem=document.querySelector(`.nav-item[data-tab="${tab}"]`);
+  if(navItem)navItem.classList.add('active');
+  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+}
+document.addEventListener('click',e=>{if(!e.target.closest('.search-box'))document.getElementById('searchResults').classList.remove('show');});
+
+// ============================================================
+// KEYBOARD SHORTCUTS
+// ============================================================
+document.addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;
+  if(e.key==='/'){e.preventDefault();document.getElementById('globalSearch').focus();}
+  if(e.key==='Escape'){document.getElementById('searchResults').classList.remove('show');document.getElementById('globalSearch').blur();document.querySelector('.sidebar').classList.remove('open');closeSOS();}
+});
+
 function init(){
   updateCountdown();updateMotivation();updatePanel();
   renderExercises();renderTheory();initFlashcards();
