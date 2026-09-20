@@ -15,7 +15,7 @@ Un archivo HTML autocontenido que funciona como plataforma completa de estudio. 
 | Modulo | Descripcion |
 |--------|-------------|
 | **Panel Principal** | Progreso general, racha de estudio, meta semanal, estadisticas por unidad |
-| **Ejercicios** | 82 ejercicios con enunciado y solucion completa, organizados por unidad (U1-U7) |
+| **Ejercicios** | 82 ejercicios de practica con enunciado y solucion completa, organizados por unidad (U1-U7). Estan redactados al estilo de cada TP de la catedra, no son los enunciados de la catedra |
 | **Teoria** | Tarjetas de teoria expandibles con contenido completo de las 7 unidades |
 | **Flashcards** | 35 flashcards interactivas con flip, filtro por unidad y tracking de dominio |
 | **Practica Oral** | Simulador de coloquio (3ra etapa): sortea unidad, lista temas, califica practica |
@@ -25,6 +25,22 @@ Un archivo HTML autocontenido que funciona como plataforma completa de estudio. 
 | **Pomodoro** | Timer 50/10 con estadisticas de sesiones y horas acumuladas |
 | **Plan Semanal** | Plan de 4 semanas con milestones y checkboxes de progreso |
 | **Prediccion Final** | Analisis estadistico de ~35 examenes reales, banco de frases, V/F, errores S/SE/SD, 10 simulacros formato Campus |
+| **Plan 30/09** | Plan dual para las mesas de SSL (30/09) y Arquitectura (09/10), con punto de decision |
+| **Guia TP (87 reales)** | Los 87 enunciados TEXTUALES de la guia de trabajos practicos 2021 de la catedra, con su numero y grupo (A-F), resueltos paso a paso. Cada resolucion declara su fuente: 28 salen del PDF resuelto por los docentes, el resto se resolvieron siguiendo las convenciones de la catedra |
+
+### Sobre los dos bancos de ejercicios
+
+El dashboard tiene dos bancos separados a proposito:
+
+- **Ejercicios (82):** redactados siguiendo los temas del programa 2025 y el estilo de cada TP. Sirven de
+  practica, pero no son los enunciados de la catedra.
+- **Guia TP (87):** los enunciados reales de la guia 2021, extraidos de los PDF de la catedra sin reformular.
+  Dos quedan marcados como incompletos porque la guia cita una gramatica que el PDF no define.
+
+Dos detalles que conviene saber al trabajar con el material original: las flechas de las producciones vienen
+en fuente Symbol y se pierden al extraer texto de los PDF, y los PDF resueltos por los docentes estan
+numerados segun la guia 2020, asi que varios quedaron pegados a un ejercicio que no es el suyo. Donde el
+resuelto no correspondia, la resolucion lo dice.
 
 ## Prediccion de examen
 
